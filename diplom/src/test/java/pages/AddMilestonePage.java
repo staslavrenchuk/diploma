@@ -17,7 +17,7 @@ public class AddMilestonePage extends BasePage {
         return driver.findElement(nameMilestoneInputLocator);
     }
 
-    public WebElement getaddMilestone() {
+    public WebElement getAddMilestone() {
         return driver.findElement(addMilestoneButtonLocator);
     }
 

@@ -15,7 +15,7 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getAddProgectDashboardPage() {
+    public WebElement getAddProjectButton() {
         return driver.findElement(addProjectButtonLocator);
     }
 
