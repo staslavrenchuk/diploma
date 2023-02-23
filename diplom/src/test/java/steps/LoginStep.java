@@ -1,7 +1,7 @@
-package Steps;
+package steps;
 
-import Pages.DashboardPage;
-import Pages.LoginPage;
+import pages.DashboardPage;
+import pages.LoginPage;
 import baseEntities.BaseStep;
 import configuration.ReadProperties;
 import org.openqa.selenium.WebDriver;
