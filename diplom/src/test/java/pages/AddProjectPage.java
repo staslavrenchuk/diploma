@@ -17,7 +17,7 @@ public class AddProjectPage extends BasePage {
         return driver.findElement(nameInputLocator);
     }
 
-    public WebElement getAddNewProject() {
+    public WebElement getAddNewProjectButton() {
         return driver.findElement(addProjectButtonLocator);
     }
 

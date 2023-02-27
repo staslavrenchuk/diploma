@@ -15,7 +15,7 @@ public class MilestoneStep extends BaseStep {
     }
     public void addMilestone(String name) {
         addMilestonePage.getNameMilestoneInput().sendKeys(name);
-        addMilestonePage.getAddMilestone().click();
+        addMilestonePage.getAddMilestoneButton().click();
     }
 
     public MilestonesPage moveToMilestonesPageSuccessful(String name) {

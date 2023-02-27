@@ -21,7 +21,7 @@ public class ProjectStep extends BaseStep {
     }
 
     public void addProjectOnDashboardPage() {
-        dashboardPage.getAddProgectDashboardPage().click();
+        dashboardPage.getAddProjectButton().click();
     }
 
     public AddProjectPage moveToAddProjectPageSuccessful() {
@@ -30,7 +30,7 @@ public class ProjectStep extends BaseStep {
 
     public void addProject(String name) {
         addProjectPage.getNameInput().sendKeys(name);
-        addProjectPage.getAddNewProject().click();
+        addProjectPage.getAddNewProjectButton().click();
     }
 
     public ProjectsPage moveToProjectPageSuccessful(String name) {

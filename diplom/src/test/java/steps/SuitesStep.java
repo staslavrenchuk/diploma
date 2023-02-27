@@ -25,12 +25,12 @@ public class SuitesStep extends BaseStep {
         return new AddTestSuitePage(driver);
     }
 
-    public void addTestSuite(String name) {
+    private void addTestSuite(String name) {
         addTestSuitePage.getNameInput().sendKeys(name);
         addTestSuitePage.getAddTestSuiteButton().click();
     }
 
-    public SuitePage moveToSuitePageSuccessful(String name) {
+    public SuitePage addTestSuiteSuccessful(String name) {
         addTestSuite(name);
         return new SuitePage(driver);
     }
