@@ -1,0 +1,9 @@
+{
+  "name": "Project name",
+  "announcement": "Project announcement",
+  "show_announcement": true,
+  "is_completed": false,
+  "completed_on": null,
+  "suite_mode": 3,
+  "default_role_id": null
+}
