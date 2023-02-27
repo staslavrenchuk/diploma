@@ -12,7 +12,7 @@ public class MilestonesPage extends BasePage {
     private final By addMilestoneButtonLocator = By.xpath("//*[contains(text(), 'Add Milestone')]");
 
 
-    public WebElement getAddMilestone() {
+    public WebElement getAddMilestoneButton() {
         return driver.findElement(addMilestoneButtonLocator);
     }
 
