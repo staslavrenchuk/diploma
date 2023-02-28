@@ -4,6 +4,7 @@ import baseEntities.BaseTest;
 import configuration.ReadProperties;
 import elements.RadioButton;
 import steps.LoginStep;
+import steps.ProjectStep;
 
 public class SimpleTest extends BaseTest {
 
@@ -12,10 +13,8 @@ public class SimpleTest extends BaseTest {
         driver.get(ReadProperties.getUrl());
         LoginStep step = new LoginStep(driver);
         step.successfulLogin();
-        driver.get("https://diploma123.testrail.io/index.php?/admin/projects/add/1");
-        RadioButton button = new RadioButton(driver, "suite_mode");
-        button.selectByIndex(2);
+
+        ProjectStep step1 = new ProjectStep(driver);
+        step1.addProjectOnDashboardPage();
     }
-
-
 }
