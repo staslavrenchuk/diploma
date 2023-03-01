@@ -1,7 +1,6 @@
 package models;
 
 import io.restassured.response.Response;
-import lombok.*;
 import org.apache.http.HttpStatus;
 import utils.Endpoints;
 
@@ -14,9 +13,11 @@ public class Project {
 
     private int projectId;
 
+    private Response response;
+
 
     private void add(File file) {
-        Response response = given()
+        response = given()
                 .body(file)
                 .when()
                 .post(Endpoints.ADD_PROJECT)
@@ -28,7 +29,7 @@ public class Project {
     }
 
     private void get(int projectId) {
-       Response response = given()
+        response = given()
                 .pathParams("project_id", projectId)
                 .when()
                 .get(Endpoints.GET_PROJECT)
@@ -40,24 +41,27 @@ public class Project {
     }
 
     private void update(int projectId, File file) {
-        given()
+        response = given()
                 .pathParams("project_id", projectId)
                 .body(file)
                 .when()
                 .post(Endpoints.UPDATE_PROJECT)
                 .then()
                 .log().body()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_OK)
+                .extract().response();
+        ;
     }
 
     private void delete(int projectId) {
-        given()
+        response = given()
                 .pathParams("project_id", projectId)
                 .when()
                 .post(Endpoints.DELETE_PROJECT)
                 .then()
                 .log().body()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_OK)
+                .extract().response();
     }
 
     public void addProject(File file) {
@@ -79,6 +83,10 @@ public class Project {
 
     public int getProjectId() {
         return projectId;
+    }
+
+    public Response getResponse() {
+        return response;
     }
 
 
