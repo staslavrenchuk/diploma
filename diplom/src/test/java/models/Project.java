@@ -1,6 +1,7 @@
 package models;
 
 import io.restassured.response.Response;
+import lombok.Builder;
 import org.apache.http.HttpStatus;
 import utils.Endpoints;
 
@@ -8,13 +9,21 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
+@Builder
+
 public class Project {
 
 
     private int projectId;
+    private String name;
+    private String description;
 
     private Response response;
 
+
+    public Project(){
+
+    }
 
     private void add(File file) {
         response = given()

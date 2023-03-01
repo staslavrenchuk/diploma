@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import pages.AddMilestonePage;
 import pages.MilestonesPage;
 
-
 public class MilestoneStep extends BaseStep {
     private AddMilestonePage addMilestonePage;
 
@@ -18,7 +17,6 @@ public class MilestoneStep extends BaseStep {
         addMilestonePage.getNameMilestoneInput().sendKeys(name);
         addMilestonePage.getAddMilestoneButton().click();
     }
-
 
     public MilestonesPage moveToMilestonesPageSuccessful(String name) {
         addMilestone(name);

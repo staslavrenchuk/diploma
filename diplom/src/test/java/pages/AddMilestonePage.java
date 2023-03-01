@@ -7,18 +7,24 @@ import org.openqa.selenium.WebElement;
 
 public class AddMilestonePage extends BasePage {
 
-    private final By addMilestonesLogoLocator = By.xpath("//div[contains(text(), 'Add Milestone')]");
-    private final By nameMilestoneInputLocator = By.id("name");
+    private final By addMilestoneLogoLocator = By.xpath("//div[contains(text(), 'Add Milestone')]");
+    private final By inputMilestoneNameLocator = By.id("name");
     private final By addMilestoneButtonLocator = By.id("accept");
-    private final By checkBoxMilestoneIsCompletedLocator = By.id("is_completed"); //можно раппер на чекбокс сделать
+    private final By checkBoxMilestoneIsCompletedLocator = By.id("is_completed");
+    private final By uploadImageToDescriptionLocator = By.xpath("//*[@class='icon-markdown-image']");
+    private final By uploadImageLocator = By.xpath("//*[@class='attachment-library-add-icon dz-clickable']");
+
 
 
     public WebElement getNameMilestoneInput() {
-        return driver.findElement(nameMilestoneInputLocator);
+        return driver.findElement(inputMilestoneNameLocator);
     }
 
     public WebElement getAddMilestoneButton() {
-        return driver.findElement(addMilestoneButtonLocator);
+        return driver.findElement(addMilestoneLogoLocator);
+    }
+    public WebElement getUploadImage() {
+        return driver.findElement(uploadImageLocator);
     }
 
     public WebElement getCheckBoxMilestoneIsCompleted() {
@@ -32,6 +38,6 @@ public class AddMilestonePage extends BasePage {
 
     @Override
     protected By getPageIdentifier() {
-        return addMilestonesLogoLocator;
+        return addMilestoneLogoLocator ;
     }
 }
