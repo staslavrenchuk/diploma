@@ -16,14 +16,14 @@ public class MilestoneTest extends BaseApiTest {
     private Milestone milestone;
     private final Project project = new Project();
 
-    @Test
+    @Test (groups = "Smoke")
     public void addMilestone(){
         milestone = new Milestone();
         File file = new File("src/test/resources/restApiFiles/milestoneJson.json");
         milestone.addMilestone(project.getProjectId(), file );
         milestone.setMilestoneId();
     }
-    @Test (priority = 1)
+    @Test (priority = 1,groups = "Smoke, Regression")
     public void getMilestone(){
         milestone.getMilestone(milestone.getMilestoneId());
         Assert.assertEquals(milestone.getResponse().getBody().jsonPath().get("name"), "test milestone");
