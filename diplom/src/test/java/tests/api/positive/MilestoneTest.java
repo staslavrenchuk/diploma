@@ -23,13 +23,13 @@ public class MilestoneTest extends BaseApiTest {
         milestone.addMilestone(project.getProjectId(), file );
         milestone.setMilestoneId();
     }
-    @Test
+    @Test (priority = 1)
     public void getMilestone(){
         milestone.getMilestone(milestone.getMilestoneId());
         Assert.assertEquals(milestone.getResponse().getBody().jsonPath().get("name"), "test milestone");
     }
 
-    @Test
+    @Test (priority = 2)
     public void deleteMilestone(){
         milestone.deleteMilestone(milestone.getMilestoneId());
         Assert.assertEquals(milestone.getResponse().statusCode(), HttpStatus.SC_OK);
