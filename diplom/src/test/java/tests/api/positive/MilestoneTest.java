@@ -8,41 +8,45 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import steps.MilestoneStep;
+import steps.ProjectStep;
 
 import java.io.File;
 
 public class MilestoneTest extends BaseApiTest {
 
-    private Milestone milestone;
-    private final Project project = new Project();
+    private MilestoneStep milestoneStep;
+    private ProjectStep projectStep;
 
     @Test (groups = "Smoke")
     public void addMilestone(){
-        milestone = new Milestone();
+        milestoneStep = new MilestoneStep();
         File file = new File("src/test/resources/restApiFiles/milestoneJson.json");
-        milestone.addMilestone(project.getProjectId(), file );
-        milestone.setMilestoneId();
+        milestoneStep.addApiMilestone(projectStep.getProjectId(), file );
+        milestoneStep.setMilestoneId();
     }
     @Test (priority = 1,groups = "Smoke, Regression")
     public void getMilestone(){
-        milestone.getMilestone(milestone.getMilestoneId());
-        Assert.assertEquals(milestone.getResponse().getBody().jsonPath().get("name"), "test milestone");
+        milestoneStep.getApiMilestone(milestoneStep.getMilestoneId());
+        Assert.assertEquals(milestoneStep.getResponse().getBody().jsonPath().get("name"), "test milestone");
     }
 
-    @Test (priority = 2)
+    @Test (priority = 2, groups = "Smoke, Regression")
     public void deleteMilestone(){
-        milestone.deleteMilestone(milestone.getMilestoneId());
-        Assert.assertEquals(milestone.getResponse().statusCode(), HttpStatus.SC_OK);
+        milestoneStep.deleteApiMilestone(milestoneStep.getMilestoneId());
+        Assert.assertEquals(milestoneStep.getResponse().statusCode(), HttpStatus.SC_OK);
     }
 
-    @BeforeClass
+    @BeforeClass (groups = "Smoke, Regression")
     public void createTestProject(){
+        projectStep = new ProjectStep();
         File path = new File("src/test/resources/restApiFiles/projectJson.json");
-        project.addProject(path);
+        projectStep.addApiProject(path);
+
     }
-    @AfterClass
+    @AfterClass(groups = "Smoke, Regression")
     public void deleteTestProject(){
-        project.deleteProject(project.getProjectId());
+        projectStep.deleteApiProject(projectStep.getProjectId());
     }
 
 }

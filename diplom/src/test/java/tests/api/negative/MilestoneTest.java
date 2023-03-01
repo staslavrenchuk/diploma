@@ -8,43 +8,45 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import steps.MilestoneStep;
+import steps.ProjectStep;
 
 import java.io.File;
 
 public class MilestoneTest extends BaseApiTest {
-    private final Project project = new Project();
-    private final Milestone milestone = new Milestone();
+    private final ProjectStep projectStep = new ProjectStep();
+    private final MilestoneStep milestoneStep = new MilestoneStep();
 
 
     @Test
     public void addMilestoneWithLongName(){
         File file = new File("src/test/resources/restApiFiles/negativeMilestoneJson.json");
-        milestone.addMilestone(project.getProjectId(), file);
-        Assert.assertEquals(milestone.getResponse().getBody().jsonPath().getString("error"),
+        milestoneStep.addApiMilestone(projectStep.getProjectId(), file);
+        Assert.assertEquals(milestoneStep.getResponse().getBody().jsonPath().getString("error"),
                 "Field :name is too long (250 characters at most).");
 
     }
 
     @Test
     public void getMilestoneWithIncorrectId(){
-        milestone.getMilestone(0);
-        Assert.assertEquals(milestone.getResponse().getBody().jsonPath().getString("error"),
+        milestoneStep.getApiMilestone(0);
+        Assert.assertEquals(milestoneStep.getResponse().getBody().jsonPath().getString("error"),
                 "Field :milestone_id is not a valid milestone.");
     }
 
     @Test
     public void deleteMilestoneWithIncorrectId(){
-        milestone.deleteMilestone(0);
-        Assert.assertNotEquals(milestone.getResponse().getStatusCode(), HttpStatus.SC_OK);
+        milestoneStep.deleteApiMilestone(0);
+        Assert.assertNotEquals(milestoneStep.getResponse().getStatusCode(), HttpStatus.SC_OK);
     }
 
     @BeforeClass
     public void createTestProject(){
         File path = new File("src/test/resources/restApiFiles/projectJson.json");
-        project.addProject(path);
+        projectStep.addApiProject(path);
     }
     @AfterClass
     public void deleteTestProject(){
-        project.deleteProject(project.getProjectId());
+        projectStep.deleteApiProject(projectStep.getProjectId());
     }
 }

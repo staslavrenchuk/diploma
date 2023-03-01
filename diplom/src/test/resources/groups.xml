@@ -19,6 +19,8 @@
        </groups>
         <classes>
             <class name="tests.api.positive.ProjectTest"/>
+            <class name="tests.api.positive.MilestoneTest"/>
+            <class name="tests.api.negative.MilestoneTest"/>
 
         </classes>
     </test>
