@@ -18,7 +18,7 @@ public class SuitesStep extends BaseStep {
     }
 
     public void addTestSuiteOnTestSuitesPage() {
-        suitesAndCasesPage.getAddSuiteLocator().click();
+        suitesAndCasesPage.getAddSuiteButton().click();
     }
 
     public AddTestSuitePage moveToAddTestSuitesPageSuccessful() {

@@ -28,13 +28,16 @@ public class ProjectStep extends BaseStep {
         return new AddProjectPage(driver);
     }
 
-    public void addProject(String name) {
+    public void addProject(String name, String description) {
         addProjectPage.getNameInput().sendKeys(name);
+        addProjectPage.getDescriptionInput().sendKeys(description);
+        addProjectPage.getCheckBoxId();
+        addProjectPage.getType();
         addProjectPage.getAddNewProjectButton().click();
     }
 
-    public ProjectsPage moveToProjectPageSuccessful(String name) {
-        addProject(name);
+    public ProjectsPage moveToProjectPageSuccessful(String name, String description) {
+        addProject(name, description);
         return new ProjectsPage(driver);
     }
 }
