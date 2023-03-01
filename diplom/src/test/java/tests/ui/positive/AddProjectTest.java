@@ -20,10 +20,10 @@ public class AddProjectTest extends BaseTest {
 
         ProjectStep projectStep = new ProjectStep(driver);
         projectStep.addProjectOnDashboardPage();
-        Project project = Project.builder()
-                .name("NewProjectTest")
-                .description("NewDescriptionTest")
-        .build();
+//        Project project = Project.builder()
+//                .name("NewProjectTest")
+//                .description("NewDescriptionTest")
+//        .build();
 
     }
 }

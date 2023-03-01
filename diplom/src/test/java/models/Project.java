@@ -9,7 +9,6 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
-@Builder
 
 public class Project {
 
