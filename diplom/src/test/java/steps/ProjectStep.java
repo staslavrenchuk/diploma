@@ -43,22 +43,20 @@ public class ProjectStep extends BaseStep {
         return new AddProjectPage(driver);
     }
 
-    public void addProject(String name, String description) throws InterruptedException {
+    public void addProject(String name, String description) {
         addProjectPage.getNameInput().sendKeys(name);
         addProjectPage.getDescriptionInput().sendKeys(description);
         addProjectPage.getCheckBoxId().setFlag();
-        Thread.sleep(2000);
         addProjectPage.getType().selectByValue("1");
-        Thread.sleep(2000);
         addProjectPage.getAddNewProjectButton().click();
     }
 
-    public ProjectsPage moveToProjectPageSuccessful(String name, String description) throws InterruptedException {
+    public ProjectsPage moveToProjectPageSuccessful(String name, String description) {
         addProject(name, description);
         return new ProjectsPage(driver);
     }
 
-    public ProjectsPage moveToProjectPageSuccessful(Project project) throws InterruptedException {
+    public ProjectsPage moveToProjectPageSuccessful(Project project)  {
         return moveToProjectPageSuccessful(project.getName(), project.getDescription());
     }
 

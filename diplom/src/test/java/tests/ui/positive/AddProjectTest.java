@@ -11,7 +11,7 @@ public class AddProjectTest extends BaseTest {
 
     @Test(description = "project is adding in this test")
 
-    public void addNewProjectTest() throws InterruptedException {
+    public void addNewProjectTest()  {
         LoginStep loginStep = new LoginStep(driver);
         Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
 
