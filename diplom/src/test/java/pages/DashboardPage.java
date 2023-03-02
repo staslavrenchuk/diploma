@@ -19,7 +19,7 @@ public class DashboardPage extends BasePage {
     public WebElement getAddProjectButton() {
         return driver.findElement(addProjectButtonLocator);
     }
-    public WebElement toolTip() {
+    public WebElement getRefineElement() {
         return driver.findElement(refineLocator);
     }
 

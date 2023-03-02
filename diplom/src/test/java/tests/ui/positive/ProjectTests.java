@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import steps.LoginStep;
 import steps.ProjectStep;
 
-public class AddProjectTest extends BaseTest {
+public class ProjectTests extends BaseTest {
 
     @Test(description = "project is adding in this test")
 
@@ -26,5 +26,15 @@ public class AddProjectTest extends BaseTest {
 
         Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
 
+    }
+    @Test
+
+    public void deleteProject() {
+        LoginStep loginStep = new LoginStep(driver);
+        Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
+         driver.get("https://diploma123.testrail.io/index.php?/admin/projects/overview");
+
+        ProjectStep projectStep = new ProjectStep(driver);
+        projectStep.projectDeleteSuccessful("Hardcore");
     }
 }

@@ -5,7 +5,9 @@ import com.github.dockerjava.core.dockerfile.DockerfileStatement;
 import io.restassured.response.Response;
 import models.Project;
 import org.apache.http.HttpStatus;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.AddProjectPage;
 import pages.DashboardPage;
 import pages.ProjectsPage;
@@ -19,6 +21,7 @@ public class ProjectStep extends BaseStep {
 
     private DashboardPage dashboardPage;
     private AddProjectPage addProjectPage;
+    private ProjectsPage projectsPage;
 
     private Response response;
     private int projectId;
@@ -28,6 +31,7 @@ public class ProjectStep extends BaseStep {
         super(driver);
         dashboardPage = new DashboardPage(driver);
         addProjectPage = new AddProjectPage(driver);
+        projectsPage = new ProjectsPage(driver);
 
     }
 
@@ -49,6 +53,18 @@ public class ProjectStep extends BaseStep {
         addProjectPage.getCheckBoxId().setFlag();
         addProjectPage.getType().selectByValue("1");
         addProjectPage.getAddNewProjectButton().click();
+    }
+
+    public void delete(String projectName){
+        driver.findElement(By.xpath("//a[text()='" + projectName + "']/parent::td/following-sibling::td[2]/child::a/child::div")).click();
+    }
+
+    public ProjectsPage projectDeleteSuccessful(String projectName) {
+        delete(projectName);
+        projectsPage.deleteThisProject.setFlag();
+        projectsPage.okButton.click();
+
+        return new ProjectsPage(driver);
     }
 
     public ProjectsPage moveToProjectPageSuccessful(String name, String description) {
