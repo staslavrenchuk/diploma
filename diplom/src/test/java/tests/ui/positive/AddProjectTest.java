@@ -2,6 +2,7 @@ package tests.ui.positive;
 
 import baseEntities.BaseTest;
 import models.Project;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.LoginStep;
 import steps.ProjectStep;
@@ -10,20 +11,20 @@ public class AddProjectTest extends BaseTest {
 
     @Test(description = "project is adding in this test")
 
-    public void addNewProjectTest() {
+    public void addNewProjectTest() throws InterruptedException {
         LoginStep loginStep = new LoginStep(driver);
-        loginStep.successfulLogin();
-//
-//        ProjectStep projectStep = new ProjectStep(driver);
-//        projectStep.addProjectOnDashboardPage();
-//        projectStep.addProject("NewProjectTest", "NewDescriptionTest");
+        Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
+
 
         ProjectStep projectStep = new ProjectStep(driver);
-        projectStep.addProjectOnDashboardPage();
-//        Project project = Project.builder()
-//                .name("NewProjectTest")
-//                .description("NewDescriptionTest")
-//        .build();
+        Assert.assertTrue(projectStep.addProjectOnDashboard().isPageOpened());
+
+        Project project = Project.builder()
+                .name("ProjectTest")
+                .description("DescriptionTest")
+                .build();
+
+        Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
 
     }
 }

@@ -1,8 +1,8 @@
 package steps;
 
 import baseEntities.BaseStep;
+import com.github.dockerjava.core.dockerfile.DockerfileStatement;
 import io.restassured.response.Response;
-import models.Milestone;
 import models.Project;
 import org.apache.http.HttpStatus;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,6 @@ public class ProjectStep extends BaseStep {
     private DashboardPage dashboardPage;
     private AddProjectPage addProjectPage;
 
-
     private Response response;
     private int projectId;
 
@@ -31,28 +30,36 @@ public class ProjectStep extends BaseStep {
         addProjectPage = new AddProjectPage(driver);
 
     }
-    public ProjectStep(){
+
+    public ProjectStep() {
     }
 
     public void addProjectOnDashboardPage() {
         dashboardPage.getAddProjectButton().click();
     }
 
-    public AddProjectPage moveToAddProjectPageSuccessful() {
+    public AddProjectPage addProjectOnDashboard() {
+        addProjectOnDashboardPage();
         return new AddProjectPage(driver);
     }
 
-    public void addProject(String name, String description) {
+    public void addProject(String name, String description) throws InterruptedException {
         addProjectPage.getNameInput().sendKeys(name);
         addProjectPage.getDescriptionInput().sendKeys(description);
-        addProjectPage.getCheckBoxId();
-        addProjectPage.getType();
+        addProjectPage.getCheckBoxId().setFlag();
+        Thread.sleep(2000);
+        addProjectPage.getType().selectByValue("1");
+        Thread.sleep(2000);
         addProjectPage.getAddNewProjectButton().click();
     }
 
-    public ProjectsPage moveToProjectPageSuccessful(String name, String description) {
+    public ProjectsPage moveToProjectPageSuccessful(String name, String description) throws InterruptedException {
         addProject(name, description);
         return new ProjectsPage(driver);
+    }
+
+    public ProjectsPage moveToProjectPageSuccessful(Project project) throws InterruptedException {
+        return moveToProjectPageSuccessful(project.getName(), project.getDescription());
     }
 
     // API
@@ -118,6 +125,7 @@ public class ProjectStep extends BaseStep {
     public void deleteApiProject(int projectId) {
         delete(projectId);
     }
+
     public Response getResponse() {
         return response;
     }
