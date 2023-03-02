@@ -5,19 +5,19 @@ import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
 
 public class ToolTipStep extends BaseStep {
-    private DashboardPage dashboardPage = new DashboardPage(driver);
+    private DashboardPage dashboardPage;
 
     public ToolTipStep(WebDriver driver) {
         super(driver);
         dashboardPage = new DashboardPage(driver);
     }
 
-    public void compareExpectedActualToolTip(String actualToolTip) {
-        dashboardPage.getRefine().equals(actualToolTip);
+    public void compareExpectedActualToolTip(String attribute) {
+        dashboardPage.toolTip().getAttribute(attribute);
     }
 
-    public DashboardPage campare(String actualToolTip) {
-        compareExpectedActualToolTip(actualToolTip);
+    public DashboardPage campare(String attribute) {
+        compareExpectedActualToolTip(attribute);
         return new DashboardPage(driver);
     }
 }

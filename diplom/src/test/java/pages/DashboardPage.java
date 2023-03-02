@@ -19,7 +19,7 @@ public class DashboardPage extends BasePage {
     public WebElement getAddProjectButton() {
         return driver.findElement(addProjectButtonLocator);
     }
-    public WebElement getRefine() {
+    public WebElement toolTip() {
         return driver.findElement(refineLocator);
     }
 
@@ -27,6 +27,4 @@ public class DashboardPage extends BasePage {
     protected By getPageIdentifier() {
         return dashboardLogoLocator;
     }
-
-
 }
