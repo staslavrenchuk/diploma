@@ -1,8 +1,9 @@
 package tests.api.positive;
 
+import adapters.MilestoneAdapter;
+import adapters.ProjectAdapter;
 import baseEntities.BaseApiTest;
-import models.Milestone;
-import models.Project;
+
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -13,36 +14,38 @@ import java.io.File;
 
 public class MilestoneTest extends BaseApiTest {
 
-    private Milestone milestone;
-    private final Project project = new Project();
+    private MilestoneAdapter milestone;
+    private ProjectAdapter project;
 
-    @Test
+    @Test (groups = "Smoke")
     public void addMilestone(){
-        milestone = new Milestone();
+        milestone = new MilestoneAdapter();
         File file = new File("src/test/resources/restApiFiles/milestoneJson.json");
-        milestone.addMilestone(project.getProjectId(), file );
+        milestone.addApiMilestone(project.getProjectId(), file );
         milestone.setMilestoneId();
     }
-    @Test
+    @Test (priority = 1,groups = "Smoke, Regression")
     public void getMilestone(){
-        milestone.getMilestone(milestone.getMilestoneId());
+        milestone.getApiMilestone(milestone.getMilestoneId());
         Assert.assertEquals(milestone.getResponse().getBody().jsonPath().get("name"), "test milestone");
     }
 
-    @Test
+    @Test (priority = 2, groups = "Smoke, Regression")
     public void deleteMilestone(){
-        milestone.deleteMilestone(milestone.getMilestoneId());
+        milestone.deleteApiMilestone(milestone.getMilestoneId());
         Assert.assertEquals(milestone.getResponse().statusCode(), HttpStatus.SC_OK);
     }
 
-    @BeforeClass
+    @BeforeClass (groups = "Smoke, Regression")
     public void createTestProject(){
+        project = new ProjectAdapter();
         File path = new File("src/test/resources/restApiFiles/projectJson.json");
-        project.addProject(path);
+        project.addApiProject(path);
+
     }
-    @AfterClass
+    @AfterClass(groups = "Smoke, Regression")
     public void deleteTestProject(){
-        project.deleteProject(project.getProjectId());
+        project.deleteApiProject(project.getProjectId());
     }
 
 }

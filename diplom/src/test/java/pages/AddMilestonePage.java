@@ -7,18 +7,23 @@ import org.openqa.selenium.WebElement;
 
 public class AddMilestonePage extends BasePage {
 
-    private final By addMilestonesLogoLocator = By.xpath("//div[contains(text(), 'Add Milestone')]");
-    private final By nameMilestoneInputLocator = By.id("name");
+    private final By addMilestoneLogoLocator = By.xpath("//div[contains(text(), 'Add Milestone')]");
+    private final By inputMilestoneNameLocator = By.id("name");
+    private final By inputMilestoneDescriptionLocator = By.id("description_display");
     private final By addMilestoneButtonLocator = By.id("accept");
-    private final By checkBoxMilestoneIsCompletedLocator = By.id("is_completed"); //можно раппер на чекбокс сделать
+    private final By checkBoxMilestoneIsCompletedLocator = By.id("is_completed");
 
 
     public WebElement getNameMilestoneInput() {
-        return driver.findElement(nameMilestoneInputLocator);
+        return driver.findElement(inputMilestoneNameLocator);
+    }
+
+    public WebElement getDescriptionMilestoneInput() {
+        return driver.findElement(inputMilestoneDescriptionLocator);
     }
 
     public WebElement getAddMilestoneButton() {
-        return driver.findElement(addMilestoneButtonLocator);
+        return driver.findElement(addMilestoneLogoLocator);
     }
 
     public WebElement getCheckBoxMilestoneIsCompleted() {
@@ -32,6 +37,6 @@ public class AddMilestonePage extends BasePage {
 
     @Override
     protected By getPageIdentifier() {
-        return addMilestonesLogoLocator;
+        return addMilestoneLogoLocator;
     }
 }
