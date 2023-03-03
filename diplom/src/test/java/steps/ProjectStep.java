@@ -32,7 +32,6 @@ public class ProjectStep extends BaseStep {
         dashboardPage = new DashboardPage(driver);
         addProjectPage = new AddProjectPage(driver);
         projectsPage = new ProjectsPage(driver);
-
     }
 
     public ProjectStep() {
@@ -56,13 +55,15 @@ public class ProjectStep extends BaseStep {
     }
 
     public void delete(String projectName){
-        driver.findElement(By.xpath("//a[text()='" + projectName + "']/parent::td/following-sibling::td[2]/child::a/child::div")).click();
+        driver.findElement(By.xpath("//a[text()='"+projectName+"']/parent::td/following-sibling::td[2]/child::a/child::div")).click();
+        projectsPage.deleteThisProject.setFlag();
+        projectsPage.okButton.click();
     }
+
 
     public ProjectsPage projectDeleteSuccessful(String projectName) {
         delete(projectName);
-        projectsPage.deleteThisProject.setFlag();
-        projectsPage.okButton.click();
+
 
         return new ProjectsPage(driver);
     }

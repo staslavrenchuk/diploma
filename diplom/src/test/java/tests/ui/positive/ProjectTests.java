@@ -28,13 +28,13 @@ public class ProjectTests extends BaseTest {
 
     }
     @Test
-
     public void deleteProject() {
         LoginStep loginStep = new LoginStep(driver);
         Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
          driver.get("https://diploma123.testrail.io/index.php?/admin/projects/overview");
 
         ProjectStep projectStep = new ProjectStep(driver);
-        projectStep.projectDeleteSuccessful("Hardcore");
+        projectStep.projectDeleteSuccessful("WP_Project_01");
+
     }
 }
