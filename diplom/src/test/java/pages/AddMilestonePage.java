@@ -12,6 +12,8 @@ public class AddMilestonePage extends BasePage {
     private final By inputMilestoneDescriptionLocator = By.id("description_display");
     private final By addMilestoneButtonLocator = By.id("accept");
     private final By checkBoxMilestoneIsCompletedLocator = By.id("is_completed");
+    private final By addImage = By.xpath("//*[@class='icon-markdown-image']");
+    private final By uploadFile = By.xpath("is_completed");
 
 
     public WebElement getNameMilestoneInput() {
@@ -24,6 +26,12 @@ public class AddMilestonePage extends BasePage {
 
     public WebElement getAddMilestoneButton() {
         return driver.findElement(addMilestoneLogoLocator);
+    }
+    public WebElement getAddImage() {
+        return driver.findElement(addImage);
+    }
+    public WebElement getUploadFile() {
+        return driver.findElement(uploadFile);
     }
 
     public WebElement getCheckBoxMilestoneIsCompleted() {

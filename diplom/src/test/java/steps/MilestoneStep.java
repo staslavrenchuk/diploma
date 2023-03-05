@@ -6,6 +6,7 @@ import models.Milestone;
 import org.openqa.selenium.WebDriver;
 import pages.AddMilestonePage;
 import pages.MilestonesPage;
+import tests.ui.positive.MilestoneTests;
 import utils.Endpoints;
 
 import java.io.File;
@@ -30,6 +31,13 @@ public class MilestoneStep extends BaseStep {
         addMilestonePage.getNameMilestoneInput().sendKeys(name);
         addMilestonePage.getDescriptionMilestoneInput().sendKeys(description);
         addMilestonePage.getAddMilestoneButton().click();
+    }
+
+    public void uploadFile(String nameOfFile) {
+        addMilestonePage.getAddImage().click();
+        addMilestonePage.getUploadFile();
+
+        String pathToFile = MilestoneTests.class.getClassLoader().getResource("flower.jpg").getPath();
     }
     public MilestonesPage moveToMilestonesPageSuccessful(Milestone milestone) {
         addMilestone(milestone.getName(), milestone.getDescription());
