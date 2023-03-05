@@ -1,6 +1,8 @@
 package baseEntities;
 import configuration.ReadProperties;
 import factory.BrowserFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
@@ -17,13 +19,14 @@ import java.util.Objects;
 public class BaseTest {
     protected WebDriver driver;
     protected WaitsService waitsService;
+    protected Logger logger;
 
 
     @BeforeMethod
     public void setUp(ITestContext iTestContext) {
         driver = new BrowserFactory().getDriver();
         driver.get(ReadProperties.getUrl());
-        waitsService = new WaitsService(driver);
+        Logger logger = LogManager.getLogger();
 
         iTestContext.setAttribute("driver", driver);
     }

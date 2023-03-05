@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import steps.LoginStep;
 import steps.ProjectStep;
 
+
 public class ProjectTests extends BaseTest {
 
     @Test(description = "project is adding in this test")
@@ -26,6 +27,8 @@ public class ProjectTests extends BaseTest {
 
         Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
 
+        logger.trace("New project is added");
+
     }
     @Test
     public void deleteProject() {
@@ -35,6 +38,8 @@ public class ProjectTests extends BaseTest {
 
         ProjectStep projectStep = new ProjectStep(driver);
         projectStep.projectDeleteSuccessful("Hardcore");
+
+        logger.trace("A project is deleted");
 
     }
 }

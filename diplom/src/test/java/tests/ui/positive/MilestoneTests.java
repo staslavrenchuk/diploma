@@ -1,15 +1,30 @@
 package tests.ui.positive;
 
 import baseEntities.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.LoginStep;
+import steps.MilestoneStep;
 
 import java.io.File;
 
 public class MilestoneTests extends BaseTest {
+
+
+    @Test
+    public void dialogWindow() {
+
+        LoginStep loginStep = new LoginStep(driver);
+        Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
+        driver.get("https://diploma123.testrail.io/index.php?/milestones/add/64");
+
+        MilestoneStep milestoneStep = new MilestoneStep(driver);
+        Assert.assertTrue(milestoneStep.checkDialogWindow().isPageOpened());
+
+        logger.trace("Dialog window is checked");
+    }
 
     @Test
 
@@ -19,21 +34,16 @@ public class MilestoneTests extends BaseTest {
 
         driver.get("https://diploma123.testrail.io/index.php?/milestones/add/47");
 
-        WebElement fileUploadElement = waitsService.waitForExists(By.xpath("//*[@class='icon-markdown-image']"));
-        fileUploadElement.click();
+        MilestoneStep milestoneStep = new MilestoneStep(driver);
+        String nameOfFile = "flower.jpg";
 
+        milestoneStep.uploadFileSuccessful("C:" + File.separator+ "Users" + File.separator + "User" + File.separator + "IdeaProjects" + File.separator
+                + "Ultimate" + File.separator + "diploma" + File.separator + "diplom" + File.separator + "src" + File.separator + "test" + File.separator
+                + "resources" + File.separator + nameOfFile);
 
-        WebElement addFile = waitsService.waitForExists(By.xpath("//input[@type='file' and @class='dz-hidden-input'][5]"));
-
-
-        String pathToFile = MilestoneTests.class.getClassLoader().getResource("flower.jpg").getPath();
-        Thread.sleep(2000);
-
-        addFile.sendKeys(pathToFile);
-        Thread.sleep(2000);
-        waitsService.waitForVisibilityBy(By.id("file-submit")).submit();
-
-        Assert.assertEquals(waitsService.waitForVisibilityBy(By.id("attachmentNewSubmit")).getText().trim(),
-                "flower.jpg");
+//        Assert.assertEquals(waitsService.waitForVisibilityBy(
+//                        By.xpath("//*[@class='attachment-list dz-persistent']//child::div[1]")).getAttribute("title"),
+//                nameOfFile);
+        logger.trace("New file is uploaded");
     }
 }

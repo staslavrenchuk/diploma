@@ -1,28 +1,18 @@
 package steps;
 
 import baseEntities.BaseStep;
-import com.github.dockerjava.core.dockerfile.DockerfileStatement;
-import io.restassured.response.Response;
 import models.Project;
-import org.apache.http.HttpStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.AddProjectPage;
 import pages.DashboardPage;
 import pages.ProjectsPage;
-import utils.Endpoints;
-
-import java.io.File;
-
-import static io.restassured.RestAssured.given;
 
 public class ProjectStep extends BaseStep {
 
     private DashboardPage dashboardPage;
     private AddProjectPage addProjectPage;
     private ProjectsPage projectsPage;
-
 
 
 
@@ -51,12 +41,17 @@ public class ProjectStep extends BaseStep {
         addProjectPage.getCheckBoxId().setFlag();
         addProjectPage.getType().selectByValue("1");
         addProjectPage.getAddNewProjectButton().click();
+
+        logger.trace("Name for project - " + name + " ,description - " + description);
+
     }
 
     public void delete(String projectName){
         driver.findElement(By.xpath("//a[text()='"+projectName+"']/parent::td/following-sibling::td[2]/child::a/child::div")).click();
         projectsPage.deleteThisProject.setFlag();
         projectsPage.okButton.click();
+
+        logger.trace("A project - " + projectName + " is deleted");
     }
 
 
@@ -75,7 +70,4 @@ public class ProjectStep extends BaseStep {
     public ProjectsPage moveToProjectPageSuccessful(Project project)  {
         return moveToProjectPageSuccessful(project.getName(), project.getDescription());
     }
-
-
-
 }

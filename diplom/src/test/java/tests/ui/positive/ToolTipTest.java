@@ -9,8 +9,6 @@ import helpers.CommonMethods;
 
 public class ToolTipTest extends BaseTest {
 
-
-
     @Test
 
     public void tooltipTest() {
@@ -19,5 +17,7 @@ public class ToolTipTest extends BaseTest {
 
         DashboardPage page  = new DashboardPage(driver);
         Assert.assertTrue(CommonMethods.checkTooltip(page.getRefineElement(), "Refine"));
+
+        logger.trace("Tooltip is checked");
     }
 }

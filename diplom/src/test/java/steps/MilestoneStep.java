@@ -24,23 +24,33 @@ public class MilestoneStep extends BaseStep {
     public MilestoneStep(){
 
     }
-    public void addMilestone(String name, String description) {
-        addMilestonePage.getNameMilestoneInput().sendKeys(name);
-        addMilestonePage.getDescriptionMilestoneInput().sendKeys(description);
-        addMilestonePage.getAddMilestoneButton().click();
-    }
+//    public void addMilestone(String name, String description) {
+//        addMilestonePage.getNameMilestoneInput().sendKeys(name);
+//        addMilestonePage.getDescriptionMilestoneInput().sendKeys(description);
+//        addMilestonePage.getAddMilestoneButton().click();
+//    }
 
-    public void uploadFile(String nameOfFile) {
+    public void uploadFile(String pathToFile) {
         addMilestonePage.getAddImage().click();
-        addMilestonePage.getUploadFile();
+        addMilestonePage.getUploadFile().sendKeys(pathToFile);
+        addMilestonePage.getAttachButton().click();
 
-        String pathToFile = MilestoneTests.class.getClassLoader().getResource("flower.jpg").getPath();
     }
-    public MilestonesPage moveToMilestonesPageSuccessful(Milestone milestone) {
-        addMilestone(milestone.getName(), milestone.getDescription());
-        return new MilestonesPage(driver);
+    public void dialogWindows() {
+        addMilestonePage.getDialogWindow().click();
+        addMilestonePage.getAddTableDialogWindow().click();
     }
+    public AddMilestonePage uploadFileSuccessful(String pathToFile){
+        uploadFile(pathToFile);
+        return new AddMilestonePage(driver);
+    }
+//    public MilestonesPage moveToMilestonesPageSuccessful(Milestone milestone) {
+//        addMilestone(milestone.getName(), milestone.getDescription());
+//        return new MilestonesPage(driver);
+//    }
 
-
-
+    public AddMilestonePage checkDialogWindow() {
+        dialogWindows();
+        return new AddMilestonePage(driver);
+    }
 }
