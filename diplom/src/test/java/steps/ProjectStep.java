@@ -23,8 +23,7 @@ public class ProjectStep extends BaseStep {
     private AddProjectPage addProjectPage;
     private ProjectsPage projectsPage;
 
-    private Response response;
-    private int projectId;
+
 
 
     public ProjectStep(WebDriver driver) {
@@ -77,76 +76,6 @@ public class ProjectStep extends BaseStep {
         return moveToProjectPageSuccessful(project.getName(), project.getDescription());
     }
 
-    // API
-    private void add(File file) {
-        response = given()
-                .body(file)
-                .when()
-                .post(Endpoints.ADD_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-        projectId = response.getBody().jsonPath().getInt("id");
-    }
 
-    private void get(int projectId) {
-        response = given()
-                .pathParams("project_id", projectId)
-                .when()
-                .get(Endpoints.GET_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-    }
-
-    private void update(int projectId, File file) {
-        response = given()
-                .pathParams("project_id", projectId)
-                .body(file)
-                .when()
-                .post(Endpoints.UPDATE_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-        ;
-    }
-
-    private void delete(int projectId) {
-        response = given()
-                .pathParams("project_id", projectId)
-                .when()
-                .post(Endpoints.DELETE_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-    }
-
-    public void addApiProject(File file) {
-        add(file);
-    }
-
-    public void getApiProject(int projectId) {
-        get(projectId);
-    }
-
-    public void updateApiProject(int projectId, File file) {
-        update(projectId, file);
-    }
-
-    public void deleteApiProject(int projectId) {
-        delete(projectId);
-    }
-
-    public Response getResponse() {
-        return response;
-    }
-
-    public int getProjectId() {
-        return projectId;
-    }
 
 }

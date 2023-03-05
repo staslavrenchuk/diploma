@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import steps.LoginStep;
+import helpers.CommonMethods;
 
 public class ToolTipTest extends BaseTest {
 
@@ -17,7 +18,6 @@ public class ToolTipTest extends BaseTest {
         Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
 
         DashboardPage page  = new DashboardPage(driver);
-
-        Assert.assertTrue(checkTooltip(page.getRefineElement(), "Refine"));
+        Assert.assertTrue(CommonMethods.checkTooltip(page.getRefineElement(), "Refine"));
     }
 }

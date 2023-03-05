@@ -18,12 +18,6 @@ public class BaseTest {
     protected WebDriver driver;
     protected WaitsService waitsService;
 
-    private boolean compare(WebElement element, String innerText){
-        return Objects.equals(element.getText(), innerText);
-    }
-    public boolean checkTooltip(WebElement element, String innerText){
-        return compare(element, innerText);
-    }
 
     @BeforeMethod
     public void setUp(ITestContext iTestContext) {

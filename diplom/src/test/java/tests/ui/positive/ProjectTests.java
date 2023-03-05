@@ -34,7 +34,7 @@ public class ProjectTests extends BaseTest {
          driver.get("https://diploma123.testrail.io/index.php?/admin/projects/overview");
 
         ProjectStep projectStep = new ProjectStep(driver);
-        projectStep.projectDeleteSuccessful("WP_Project_01");
+        projectStep.projectDeleteSuccessful("Hardcore");
 
     }
 }
