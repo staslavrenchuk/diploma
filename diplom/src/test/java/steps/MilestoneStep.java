@@ -60,8 +60,6 @@ public class MilestoneStep extends BaseStep {
         return new AddMilestonePage(driver);
     }
 
-//    milestoneId = response.getBody().jsonPath().getInt("id");
-
 
     // API private
     public Response add(int projectId, File file) {

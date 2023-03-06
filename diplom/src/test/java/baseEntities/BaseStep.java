@@ -11,12 +11,13 @@ public class BaseStep {
     protected WebDriver driver;
     protected Logger logger;
 
+
     public BaseStep(WebDriver driver) {
         this.driver = driver;
-
-        Logger logger = LogManager.getLogger();
+        logger = LogManager.getLogger();
     }
-    public BaseStep(){
+
+    public BaseStep() {
 
     }
 }

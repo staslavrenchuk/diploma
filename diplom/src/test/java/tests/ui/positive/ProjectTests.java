@@ -27,7 +27,7 @@ public class ProjectTests extends BaseTest {
 
         Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
 
-        logger.trace("New project is added");
+//        logger.trace("New project is added");
 
     }
     @Test
@@ -39,7 +39,7 @@ public class ProjectTests extends BaseTest {
         ProjectStep projectStep = new ProjectStep(driver);
         projectStep.projectDeleteSuccessful("Hardcore");
 
-        logger.trace("A project is deleted");
+//        logger.trace("A project is deleted");
 
     }
 }

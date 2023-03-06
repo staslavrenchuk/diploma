@@ -1,14 +1,12 @@
 package tests.ui.positive;
 
 import baseEntities.BaseTest;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.LoginStep;
 import steps.MilestoneStep;
 
-import java.io.File;
 
 public class MilestoneTests extends BaseTest {
 
@@ -23,12 +21,12 @@ public class MilestoneTests extends BaseTest {
         MilestoneStep milestoneStep = new MilestoneStep(driver);
         Assert.assertTrue(milestoneStep.checkDialogWindow().isPageOpened());
 
-        logger.trace("Dialog window is checked");
+//        logger.trace("Dialog window is checked");
     }
 
     @Test
 
-    public void uploadFileTest() throws InterruptedException {
+    public void uploadFileTest() {
         LoginStep loginStep = new LoginStep(driver);
         Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
 
@@ -36,14 +34,13 @@ public class MilestoneTests extends BaseTest {
 
         MilestoneStep milestoneStep = new MilestoneStep(driver);
         String nameOfFile = "flower.jpg";
+        String pathToFile = MilestoneTests.class.getClassLoader().getResource("flower.jpg").getPath().substring(1);
 
-        milestoneStep.uploadFileSuccessful("C:" + File.separator+ "Users" + File.separator + "User" + File.separator + "IdeaProjects" + File.separator
-                + "Ultimate" + File.separator + "diploma" + File.separator + "diplom" + File.separator + "src" + File.separator + "test" + File.separator
-                + "resources" + File.separator + nameOfFile);
+        milestoneStep.uploadFileSuccessful(pathToFile);
 
-//        Assert.assertEquals(waitsService.waitForVisibilityBy(
-//                        By.xpath("//*[@class='attachment-list dz-persistent']//child::div[1]")).getAttribute("title"),
-//                nameOfFile);
-        logger.trace("New file is uploaded");
+        Assert.assertEquals(waitsService.waitForVisibilityBy(
+                        By.xpath("//*[@class='attachment-list dz-persistent']//child::div[1]")).getAttribute("title"),
+                nameOfFile);
+//        logger.trace("New file is uploaded");
     }
 }

@@ -17,20 +17,20 @@ public class SuiteTest extends BaseApiTest {
 
 
     @Test
-    public void addMilestoneWithLongName(){
+    public void addSuiteWithLongName(){
         File file = new File("src/test/resources/restApiFiles/NegativeSuiteJson.json");
         Assert.assertEquals(suite.addApiSuite(project.getProjectId(), file).getBody().jsonPath().getString("error"),
                 "Field :name is too long (250 characters at most).");
     }
 
     @Test
-    public void getMilestoneWithIncorrectId(){
+    public void getSuiteWithIncorrectId(){
         Assert.assertEquals(suite.getApiSuite(0).getBody().jsonPath().getString("error"),
                 "Field :suite_id is not a valid test suite.");
     }
 
     @Test
-    public void deleteMilestoneWithIncorrectId(){
+    public void deleteSuiteWithIncorrectId(){
         Assert.assertNotEquals(suite.deleteApiSuite(0).getStatusCode(), HttpStatus.SC_OK);
     }
 
