@@ -17,7 +17,6 @@ import static io.restassured.RestAssured.given;
 
 public class MilestoneStep extends BaseStep {
     private AddMilestonePage addMilestonePage;
-    private MilestoneAdapter milestoneAdapter;
     private int milestoneId;
     private Response response;
 

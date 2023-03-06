@@ -1,8 +1,0 @@
-{
-  "name": "This is a new test suite",
-  "description": "Use the description to add additional context details",
-  "is_master": false,
-  "is_baseline": false,
-  "is_completed": false,
-  "completed_on": null
-}

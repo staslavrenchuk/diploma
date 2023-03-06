@@ -1,6 +1,5 @@
 package steps;
 
-import adapters.ProjectAdapter;
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
 import models.Project;
@@ -21,7 +20,6 @@ public class ProjectStep extends BaseStep {
     private DashboardPage dashboardPage;
     private AddProjectPage addProjectPage;
     private ProjectsPage projectsPage;
-    private ProjectAdapter projectAdapter;
     private int projectId;
 
 
@@ -81,7 +79,9 @@ public class ProjectStep extends BaseStep {
     public ProjectsPage moveToProjectPageSuccessful(Project project)  {
         return moveToProjectPageSuccessful(project.getName(), project.getDescription());
     }
-    //API private
+
+
+    //API
 
     private Response add(File file) {
         Response response = given()
@@ -129,9 +129,6 @@ public class ProjectStep extends BaseStep {
                 .statusCode(HttpStatus.SC_OK)
                 .extract().response();
     }
-
-
-    // public
 
     public Response addApiProject(File file) {
         Response response = add(file);
