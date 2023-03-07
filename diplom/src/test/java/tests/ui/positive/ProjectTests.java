@@ -10,6 +10,8 @@ import steps.ProjectStep;
 
 public class ProjectTests extends BaseTest {
 
+    private Project project;
+
     @Test(description = "project is adding in this test", groups = "Smoke")
 
     public void addNewProjectTest()  {
@@ -20,7 +22,7 @@ public class ProjectTests extends BaseTest {
         ProjectStep projectStep = new ProjectStep(driver);
         Assert.assertTrue(projectStep.addProjectOnDashboard().isPageOpened());
 
-        Project project = Project.builder()
+        project = Project.builder()
                 .name("ProjectTest")
                 .description("DescriptionTest")
                 .build();
@@ -35,7 +37,7 @@ public class ProjectTests extends BaseTest {
          driver.get("https://diploma123.testrail.io/index.php?/admin/projects/overview");
 
         ProjectStep projectStep = new ProjectStep(driver);
-        projectStep.projectDeleteSuccessful("Hardcore");
+        projectStep.projectDeleteSuccessful(project.getName());
 
     }
 }
