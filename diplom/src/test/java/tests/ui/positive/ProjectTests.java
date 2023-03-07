@@ -10,7 +10,7 @@ import steps.ProjectStep;
 
 public class ProjectTests extends BaseTest {
 
-    @Test(description = "project is adding in this test")
+    @Test(description = "project is adding in this test", groups = "Smoke")
 
     public void addNewProjectTest()  {
         LoginStep loginStep = new LoginStep(driver);
@@ -27,10 +27,8 @@ public class ProjectTests extends BaseTest {
 
         Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
 
-//        logger.trace("New project is added");
-
     }
-    @Test
+    @Test(groups = "Smoke")
     public void deleteProject() {
         LoginStep loginStep = new LoginStep(driver);
         Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
@@ -38,8 +36,6 @@ public class ProjectTests extends BaseTest {
 
         ProjectStep projectStep = new ProjectStep(driver);
         projectStep.projectDeleteSuccessful("Hardcore");
-
-//        logger.trace("A project is deleted");
 
     }
 }

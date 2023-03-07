@@ -11,7 +11,7 @@ import steps.MilestoneStep;
 public class MilestoneTests extends BaseTest {
 
 
-    @Test
+    @Test(groups = "Smoke, Regression")
     public void dialogWindow() {
 
         LoginStep loginStep = new LoginStep(driver);
@@ -21,10 +21,9 @@ public class MilestoneTests extends BaseTest {
         MilestoneStep milestoneStep = new MilestoneStep(driver);
         Assert.assertTrue(milestoneStep.checkDialogWindow().isPageOpened());
 
-//        logger.trace("Dialog window is checked");
     }
 
-    @Test
+    @Test(groups = "Smoke, Regression")
 
     public void uploadFileTest() {
         LoginStep loginStep = new LoginStep(driver);
@@ -41,6 +40,5 @@ public class MilestoneTests extends BaseTest {
         Assert.assertEquals(waitsService.waitForVisibilityBy(
                         By.xpath("//*[@class='attachment-list dz-persistent']//child::div[1]")).getAttribute("title"),
                 nameOfFile);
-//        logger.trace("New file is uploaded");
     }
 }

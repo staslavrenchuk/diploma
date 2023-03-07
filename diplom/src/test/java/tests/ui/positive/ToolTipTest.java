@@ -12,7 +12,7 @@ import helpers.CommonMethods;
 public class ToolTipTest extends BaseTest {
     private final Logger logger= LogManager.getLogger();
 
-    @Test
+    @Test (groups = "Smoke, Regression")
 
     public void tooltipTest() {
         LoginStep loginStep = new LoginStep(driver);
