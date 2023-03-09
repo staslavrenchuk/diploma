@@ -1,5 +1,6 @@
 package steps;
 
+import adapters.MilestoneAdapter;
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ public class MilestoneStep extends BaseStep {
     private MilestonesPage milestonesPage;
     private int milestoneId;
     private Response response;
+    private MilestoneAdapter milestoneAdapter;
 
     public MilestoneStep(WebDriver driver) {
         super(driver);
@@ -25,14 +27,14 @@ public class MilestoneStep extends BaseStep {
     }
 
     public MilestoneStep() {
-
+        milestoneAdapter = new MilestoneAdapter();
     }
 
     public void uploadFile(String pathToFile) throws InterruptedException {
         addMilestonePage.getAddImage().click();
         addMilestonePage.getUploadFile().sendKeys(pathToFile);
-        for (int i = 0; i < 10000; i++){
-            if (driver.findElement(By.id("libraryDeleteAttachment")).isDisplayed()){
+        for (int i = 0; i < 10000; i++) {
+            if (driver.findElement(By.id("libraryDeleteAttachment")).isDisplayed()) {
                 addMilestonePage.getAttachButton().click();
                 return;
             } else {
@@ -58,67 +60,23 @@ public class MilestoneStep extends BaseStep {
     }
 
 
-    // API private
-    public Response add(int projectId, File file) {
-        return given()
-                .pathParams("project_id", projectId)
-                .body(file)
-                .when()
-                .post(Endpoints.ADD_MILESTONE)
-                .then()
-                .log().body()
-                .extract().response();
-
-    }
-
-    public Response get(int milestoneId) {
-        return given()
-                .pathParams("milestone_id", milestoneId)
-                .when()
-                .get(Endpoints.GET_MILESTONE)
-                .then()
-                .log().body()
-                .extract().response();
-    }
-
-    public Response update(int milestoneId, File file) {
-        return given()
-                .pathParams("milestone_id", milestoneId)
-                .body(file)
-                .when()
-                .post(Endpoints.UPDATE_MILESTONE)
-                .then()
-                .log().body()
-                .extract().response();
-    }
-
-    public Response delete(int milestoneId) {
-        return given()
-                .pathParams("milestone_id", milestoneId)
-                .when()
-                .post(Endpoints.DELETE_MILESTONE)
-                .then()
-                .log().body()
-                .extract().response();
-    }
-
     //API public
 
     public Response addApiMilestone(int projectId, File file) {
-        response = add(projectId, file);
+        response = milestoneAdapter.add(projectId, file);
         return response;
     }
 
     public Response getApiMilestone(int milestoneId) {
-        return get(milestoneId);
+        return milestoneAdapter.get(milestoneId);
     }
 
     public Response updateApiMilestone(int milestoneId, File file) {
-        return update(milestoneId, file);
+        return milestoneAdapter.update(milestoneId, file);
     }
 
     public Response deleteApiMilestone(int projectId) {
-        return delete(projectId);
+        return milestoneAdapter.delete(projectId);
     }
 
     public void setMilestoneId() {
