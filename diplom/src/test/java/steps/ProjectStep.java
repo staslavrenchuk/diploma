@@ -1,5 +1,6 @@
 package steps;
 
+import adapters.ProjectAdapter;
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
 import models.Project;
@@ -20,6 +21,7 @@ public class ProjectStep extends BaseStep {
     private ProjectsPage projectsPage;
     private ProjectPage projectPage;
     private MilestonesPage milestonesPage;
+    private ProjectAdapter projectAdapter;
 
     private int projectId;
 
@@ -33,7 +35,7 @@ public class ProjectStep extends BaseStep {
         milestonesPage = new MilestonesPage(driver);
     }
     public ProjectStep(){
-
+        projectAdapter = new ProjectAdapter();
     }
 
     public void addProjectOnDashboardPage() {
@@ -109,69 +111,22 @@ public class ProjectStep extends BaseStep {
 
     //API
 
-    private Response add(File file) {
-        Response response = given()
-                .body(file)
-                .when()
-                .post(Endpoints.ADD_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-
-        return response;
-    }
-
-    private Response get(int projectId) {
-        return given()
-                .pathParams("project_id", projectId)
-                .when()
-                .get(Endpoints.GET_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-    }
-
-    private Response update(int projectId, File file) {
-        return given()
-                .pathParams("project_id", projectId)
-                .body(file)
-                .when()
-                .post(Endpoints.UPDATE_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-    }
-
-    private Response delete(int projectId) {
-        return given()
-                .pathParams("project_id", projectId)
-                .when()
-                .post(Endpoints.DELETE_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-    }
-
     public Response addApiProject(File file) {
-        Response response = add(file);
+        Response response = projectAdapter.add(file);
         projectId = response.getBody().jsonPath().getInt("id");
         return response;
     }
 
     public Response getApiProject(int projectId) {
-        return get(projectId);
+        return projectAdapter.get(projectId);
     }
 
     public Response updateApiProject(int projectId, File file) {
-        return update(projectId, file);
+        return projectAdapter.update(projectId, file);
     }
 
     public Response deleteApiProject(int projectId) {
-        return delete(projectId);
+        return projectAdapter.delete(projectId);
     }
 
     public int getProjectId() {
