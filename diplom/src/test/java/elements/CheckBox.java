@@ -21,6 +21,7 @@ public class CheckBox {
             click();
         }
     }
+
     public boolean isSelected() {
         return uiElement.isSelected();
     }

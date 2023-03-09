@@ -56,11 +56,13 @@ public class ProjectStep extends BaseStep {
 
     }
 
-    public void delete(String projectName){
+    public void delete(String projectName) throws InterruptedException {
         driver.findElement(By
                 .xpath("//a[text()='"+projectName+"']/parent::td/following-sibling::td[2]/child::a/child::div"))
                 .click();
+        Thread.sleep(2000);
         projectsPage.getDeleteProjectButton().setFlag();
+        Thread.sleep(3000);
         projectsPage.getOkButton().click();
 
         logger.trace("A project - " + projectName + " is deleted");
@@ -82,7 +84,7 @@ public class ProjectStep extends BaseStep {
         logger.trace("Moving to all projects");
     }
 
-    public ProjectsPage projectDeleteSuccessful(String projectName) {
+    public ProjectsPage projectDeleteSuccessful(String projectName) throws InterruptedException {
         delete(projectName);
         return new ProjectsPage(driver);
     }

@@ -19,9 +19,9 @@ public class ProjectsPage extends BasePage {
         return projectsLogoLocator;
     }
     public CheckBox getDeleteProjectButton(){
-        return new CheckBox(driver, By.xpath("//input[@type='checkbox']"));
+        return new CheckBox(driver, By.xpath("//*[text()='Yes, delete this project (cannot be undone)']"));
     }
     public Button getOkButton() {
-        return new Button(driver, By.xpath("//a[@class=\"button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default\" and contains(text(), 'OK')]"));
+        return new Button(driver, By.xpath("(//a[@class='button button-ok button-left button-positive dialog-action-default'])[4]"));
     }
 }
