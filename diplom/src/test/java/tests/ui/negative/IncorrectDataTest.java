@@ -1,11 +1,17 @@
 package tests.ui.negative;
 
-import baseEntities.BaseTest;
+import configuration.ReadProperties;
+import factory.BrowserFactory;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import steps.LoginStep;
 
-public class IncorrectDataTest extends BaseTest {
+public class IncorrectDataTest {
+    private WebDriver driver;
 
     @Test(groups = "smoke")
 
@@ -15,5 +21,17 @@ public class IncorrectDataTest extends BaseTest {
         loginStep.unsuccessfulLogin("nastyamyshko123@gmail.co", "Password_123");
 
         Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
+
+    }
+
+    @BeforeMethod
+    public void setUp(ITestContext iTestContext) {
+        driver = new BrowserFactory().getDriver();
+        driver.get(ReadProperties.getUrl());
+        iTestContext.setAttribute("driver", driver);
+    }
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
     }
 }

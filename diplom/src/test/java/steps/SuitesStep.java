@@ -2,11 +2,6 @@ package steps;
 
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.openqa.selenium.WebDriver;
-import pages.AddTestSuitePage;
-import pages.SuitePage;
-import pages.SuitesAndCasesPage;
 import utils.Endpoints;
 
 import java.io.File;
@@ -14,40 +9,8 @@ import java.io.File;
 import static io.restassured.RestAssured.given;
 
 public class SuitesStep extends BaseStep {
-
-    private SuitesAndCasesPage suitesAndCasesPage;
-    private AddTestSuitePage addTestSuitePage;
     private int suiteId;
     private Response response;
-
-    public SuitesStep(WebDriver driver) {
-        super(driver);
-        suitesAndCasesPage = new SuitesAndCasesPage(driver);
-        addTestSuitePage = new AddTestSuitePage(driver);
-    }
-
-    public SuitesStep() {
-
-    }
-
-    public void addTestSuiteOnTestSuitesPage() {
-        suitesAndCasesPage.getAddSuiteButton().click();
-    }
-
-    public AddTestSuitePage moveToAddTestSuitesPageSuccessful() {
-        return new AddTestSuitePage(driver);
-    }
-
-    private void addTestSuite(String name) {
-        addTestSuitePage.getNameInput().sendKeys(name);
-        addTestSuitePage.getAddTestSuiteButton().click();
-    }
-
-    public SuitePage addTestSuiteSuccessful(String name) {
-        addTestSuite(name);
-        return new SuitePage(driver);
-    }
-
 
     private Response add(int projectId, File file) {
         response = given()

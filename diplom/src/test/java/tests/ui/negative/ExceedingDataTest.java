@@ -12,18 +12,15 @@ public class ExceedingDataTest extends BaseTest {
     @Test(groups = "Smoke, Regression")
 
     public void limitDataTest() {
-        LoginStep loginStep = new LoginStep(driver);
-        Assert.assertTrue(loginStep.successfulLogin().isPageOpened());
-
 
         ProjectStep projectStep = new ProjectStep(driver);
         Assert.assertTrue(projectStep.addProjectOnDashboard().isPageOpened());
 
         Project project = Project.builder()
-                .name("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                .name("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" +\n" +
+                        "                        \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" +\n" +
+                        "                        \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" +\n" +
+                        "                        \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahere251characters")
                 .description("Description")
                 .build();
 

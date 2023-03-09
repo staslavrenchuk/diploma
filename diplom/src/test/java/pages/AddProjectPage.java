@@ -1,6 +1,7 @@
 package pages;
 
 import baseEntities.BasePage;
+import elements.Button;
 import elements.CheckBox;
 import elements.RadioButton;
 import org.openqa.selenium.By;
@@ -14,8 +15,6 @@ public class AddProjectPage extends BasePage {
     private final By nameInputLocator = By.id("name");
     private final By descriptionInputLocator = By.id("announcement");
 
-    private final By addProjectButtonLocator = By.id("accept");
-
     public WebElement getNameInput() {
         return driver.findElement(nameInputLocator);
     }
@@ -23,9 +22,6 @@ public class AddProjectPage extends BasePage {
         return driver.findElement(descriptionInputLocator);
     }
 
-    public WebElement getAddNewProjectButton() {
-        return driver.findElement(addProjectButtonLocator);
-    }
 
     public AddProjectPage(WebDriver driver) {
         super(driver);
@@ -41,5 +37,9 @@ public class AddProjectPage extends BasePage {
 
     public CheckBox getCheckBoxId() {
         return new CheckBox(driver, By.id("show_announcement"));
+    }
+
+    public Button getButton() {
+        return new Button(driver, By.id("accept"));
     }
 }
