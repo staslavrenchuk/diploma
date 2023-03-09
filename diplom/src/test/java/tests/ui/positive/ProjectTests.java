@@ -26,7 +26,7 @@ public class ProjectTests extends BaseTest {
         Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
 
     }
-    @Test(groups = "Smoke")
+    @Test(dependsOnMethods = "addNewProjectTest", groups = "Smoke")
     public void deleteProject() {
 
         ProjectStep projectStep = new ProjectStep(driver);

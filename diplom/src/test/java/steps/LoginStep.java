@@ -20,8 +20,8 @@ public class LoginStep extends BaseStep {
 
     private void login(String email, String pass){
 
-        page.getEmailInput().sendKeys(email);
-        page.getPassword().sendKeys(pass);
+        page.getEmailField().sendKeys(email);
+        page.getPasswordField().sendKeys(pass);
         page.getLogInButton().click();
 
         logger.trace("Used email - " + email + " and password - " + pass + " for login");

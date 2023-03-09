@@ -40,7 +40,6 @@ public class MilestoneStep extends BaseStep {
                 i++;
             }
         }
-
     }
 
     public void dialogWindows() {

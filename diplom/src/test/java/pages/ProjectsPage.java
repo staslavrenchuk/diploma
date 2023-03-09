@@ -18,7 +18,9 @@ public class ProjectsPage extends BasePage {
     protected By getPageIdentifier() {
         return projectsLogoLocator;
     }
-    public CheckBox getDeleteProjectButton = new CheckBox(driver, By.xpath("//input[@type='checkbox']"));
+    public CheckBox getDeleteProjectButton(){
+        return new CheckBox(driver, By.xpath("//input[@type='checkbox']"));
+    }
     public Button getOkButton() {
         return new Button(driver, By.xpath("//a[@class=\"button button-ok button-ok-disabled button-left button-positive button-disabled dialog-action-default\" and contains(text(), 'OK')]"));
     }

@@ -46,8 +46,8 @@ public class ProjectStep extends BaseStep {
     }
 
     public void addProject(String name, String description) {
-        addProjectPage.getNameInput().sendKeys(name);
-        addProjectPage.getDescriptionInput().sendKeys(description);
+        addProjectPage.getNameField().sendKeys(name);
+        addProjectPage.getDescriptionField().sendKeys(description);
         addProjectPage.getCheckBoxId().setFlag();
         addProjectPage.getType().selectByValue("1");
         addProjectPage.getAcceptButton().click();
@@ -60,7 +60,7 @@ public class ProjectStep extends BaseStep {
         driver.findElement(By
                 .xpath("//a[text()='"+projectName+"']/parent::td/following-sibling::td[2]/child::a/child::div"))
                 .click();
-        projectsPage.getDeleteProjectButton.setFlag();
+        projectsPage.getDeleteProjectButton().setFlag();
         projectsPage.getOkButton().click();
 
         logger.trace("A project - " + projectName + " is deleted");
