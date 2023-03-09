@@ -28,9 +28,11 @@ public class ProjectTests extends BaseTest {
     }
     @Test(groups = "Smoke")
     public void deleteProject() {
-         driver.get("https://diploma123.testrail.io/index.php?/admin/projects/overview");
 
         ProjectStep projectStep = new ProjectStep(driver);
+        projectStep.addProjectOnDashboard();
+        projectStep.moveToAllProjects();
+
         projectStep.projectDeleteSuccessful(project.getName());
     }
 }

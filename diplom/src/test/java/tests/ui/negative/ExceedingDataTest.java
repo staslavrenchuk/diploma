@@ -4,7 +4,6 @@ import baseEntities.BaseTest;
 import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import steps.LoginStep;
 import steps.ProjectStep;
 
 public class ExceedingDataTest extends BaseTest {
@@ -17,10 +16,10 @@ public class ExceedingDataTest extends BaseTest {
         Assert.assertTrue(projectStep.addProjectOnDashboard().isPageOpened());
 
         Project project = Project.builder()
-                .name("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" +\n" +
-                        "                        \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" +\n" +
-                        "                        \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" +\n" +
-                        "                        \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahere251characters")
+                .name("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 .description("Description")
                 .build();
 

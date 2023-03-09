@@ -2,16 +2,20 @@ package steps;
 
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.AddMilestonePage;
+import pages.MilestonesPage;
 import utils.Endpoints;
 
 import java.io.File;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 
 public class MilestoneStep extends BaseStep {
     private AddMilestonePage addMilestonePage;
+    private MilestonesPage milestonesPage;
     private int milestoneId;
     private Response response;
 
@@ -24,10 +28,19 @@ public class MilestoneStep extends BaseStep {
 
     }
 
-    public void uploadFile(String pathToFile) {
+    public void uploadFile(String pathToFile) throws InterruptedException {
         addMilestonePage.getAddImage().click();
         addMilestonePage.getUploadFile().sendKeys(pathToFile);
-        addMilestonePage.getAttachButton().click();
+        for (int i = 0; i < 10000; i++){
+            if (driver.findElement(By.id("libraryDeleteAttachment")).isDisplayed()){
+                addMilestonePage.getAttachButton().click();
+                return;
+            } else {
+                Thread.sleep(500);
+                i++;
+            }
+        }
+
     }
 
     public void dialogWindows() {
@@ -35,7 +48,7 @@ public class MilestoneStep extends BaseStep {
         addMilestonePage.getAddTableDialogWindowButton().click();
     }
 
-    public AddMilestonePage uploadFileSuccessful(String pathToFile) {
+    public AddMilestonePage uploadFileSuccessful(String pathToFile) throws InterruptedException {
         uploadFile(pathToFile);
         return new AddMilestonePage(driver);
     }

@@ -17,7 +17,4 @@ public abstract class BasePage {
         return driver.findElement(getPageIdentifier()).isDisplayed();
     }
 
-    public void openPageByUrl(String pagePath) {
-        driver.get(ReadProperties.getUrl() + pagePath);
-    }
 }

@@ -2,7 +2,6 @@ package elements;
 
 import org.openqa.selenium.*;
 import services.WaitsService;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -6,9 +6,7 @@ import models.Project;
 import org.apache.http.HttpStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.AddProjectPage;
-import pages.DashboardPage;
-import pages.ProjectsPage;
+import pages.*;
 import utils.Endpoints;
 
 import java.io.File;
@@ -20,6 +18,9 @@ public class ProjectStep extends BaseStep {
     private DashboardPage dashboardPage;
     private AddProjectPage addProjectPage;
     private ProjectsPage projectsPage;
+    private ProjectPage projectPage;
+    private MilestonesPage milestonesPage;
+
     private int projectId;
 
 
@@ -28,6 +29,8 @@ public class ProjectStep extends BaseStep {
         dashboardPage = new DashboardPage(driver);
         addProjectPage = new AddProjectPage(driver);
         projectsPage = new ProjectsPage(driver);
+        projectPage = new ProjectPage(driver);
+        milestonesPage = new MilestonesPage(driver);
     }
     public ProjectStep(){
 
@@ -47,7 +50,7 @@ public class ProjectStep extends BaseStep {
         addProjectPage.getDescriptionInput().sendKeys(description);
         addProjectPage.getCheckBoxId().setFlag();
         addProjectPage.getType().selectByValue("1");
-        addProjectPage.getButton().click();
+        addProjectPage.getAcceptButton().click();
 
         logger.trace("Name for project - " + name + " ,description - " + description);
 
@@ -63,6 +66,22 @@ public class ProjectStep extends BaseStep {
         logger.trace("A project - " + projectName + " is deleted");
     }
 
+    public void selectProject(String projectName){
+        driver.findElement(By
+                .xpath("//a[text()='"+projectName+"']"))
+                .click();
+        projectPage.getMilestoneButton().click();
+
+
+        logger.trace("A project - " + projectName + " is selected");
+    }
+    public void moveToProjects(){
+        addProjectPage.getProjectsButton().click();
+
+
+        logger.trace("Moving to all projects");
+    }
+
     public ProjectsPage projectDeleteSuccessful(String projectName) {
         delete(projectName);
         return new ProjectsPage(driver);
@@ -75,6 +94,14 @@ public class ProjectStep extends BaseStep {
 
     public ProjectsPage moveToProjectPageSuccessful(Project project)  {
         return moveToProjectPageSuccessful(project.getName(), project.getDescription());
+    }
+    public ProjectsPage moveToProjectPageSuccessful(String projectName)  {
+        selectProject(projectName);
+        return new ProjectsPage(driver);
+    }
+    public ProjectsPage moveToAllProjects()  {
+        moveToProjects();
+        return new ProjectsPage(driver);
     }
 
 

@@ -1,9 +1,12 @@
 package tests.ui.positive;
 
 import baseEntities.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.MilestoneStep;
+import steps.ProjectStep;
 
 
 public class MilestoneTests extends BaseTest {
@@ -12,28 +15,34 @@ public class MilestoneTests extends BaseTest {
     @Test(groups = "Smoke, Regression")
     public void dialogWindow() {
 
-        driver.get("https://diploma1234.testrail.io/index.php?/milestones/add/2");
-
+        ProjectStep projectStep = new ProjectStep(driver);
         MilestoneStep milestoneStep = new MilestoneStep(driver);
+        projectStep.selectProject("Test");
+
+
         Assert.assertTrue(milestoneStep.checkDialogWindow().isPageOpened());
 
     }
 
     @Test(groups = "Smoke, Regression")
 
-    public void uploadFileTest() {
+    public void uploadFileTest() throws InterruptedException {
 
+        ProjectStep projectStep = new ProjectStep(driver);
         MilestoneStep milestoneStep = new MilestoneStep(driver);
 
-        driver.get("https://diploma1234.testrail.io/index.php?/milestones/add/2");
+        projectStep.selectProject("Test");
+
 
         String nameOfFile = "flower.jpg";
         String pathToFile = MilestoneTests.class.getClassLoader().getResource("flower.jpg").getPath().substring(1);
 
         milestoneStep.uploadFileSuccessful(pathToFile);
-//
-//        Assert.assertEquals(waitsService.waitForVisibilityBy(
-//                        By.xpath("//*[@class='attachment-list dz-persistent']//child::div[1]")).getAttribute("title"),
-//                "download.jpeg  (Click and hold to enter delete mode)");
+
+        Assert.assertEquals(
+                driver.findElement(By
+                        .xpath("//*[@class='attachment-list-item attachment-block attachment-picture']"))
+                        .getAttribute("title"),
+                nameOfFile + "\t(Click and hold to enter delete mode)");
     }
 }

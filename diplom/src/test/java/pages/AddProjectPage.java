@@ -22,7 +22,6 @@ public class AddProjectPage extends BasePage {
         return driver.findElement(descriptionInputLocator);
     }
 
-
     public AddProjectPage(WebDriver driver) {
         super(driver);
     }
@@ -39,7 +38,10 @@ public class AddProjectPage extends BasePage {
         return new CheckBox(driver, By.id("show_announcement"));
     }
 
-    public Button getButton() {
+    public Button getAcceptButton() {
         return new Button(driver, By.id("accept"));
+    }
+    public Button getProjectsButton() {
+        return new Button(driver, By.id("navigation-sub-projects"));
     }
 }
