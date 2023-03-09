@@ -34,8 +34,8 @@ public class LoginStep extends BaseStep {
         return new DashboardPage(driver);
     }
 
-    public LoginPage unsuccessfulLogin() {
-        login(ReadProperties.email(), ReadProperties.password());
+    public LoginPage unsuccessfulLogin(String email, String pass) {
+        login(email, pass);
         return page;
     }
 }
