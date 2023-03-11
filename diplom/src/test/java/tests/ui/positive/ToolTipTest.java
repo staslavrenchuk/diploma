@@ -11,7 +11,7 @@ import helpers.CommonMethods;
 public class ToolTipTest extends BaseTest {
     private final Logger logger= LogManager.getLogger();
 
-    @Test (groups = "Smoke, Regression")
+    @Test (groups = "Regression")
 
     public void tooltipTest() {
 

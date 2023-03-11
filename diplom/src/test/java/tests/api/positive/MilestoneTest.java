@@ -24,25 +24,25 @@ public class MilestoneTest extends BaseApiTest {
         milestone.setMilestoneId();
     }
 
-    @Test(priority = 1, groups = "Smoke, Regression")
+    @Test(dependsOnMethods = "addMilestone", groups = "Smoke")
     public void getMilestone() {
         milestone.getApiMilestone(milestone.getMilestoneId());
         Assert.assertEquals(milestone.getApiMilestone(milestone.getMilestoneId()).getBody().jsonPath().get("name"), "test milestone");
     }
 
-    @Test(priority = 2, groups = "Smoke, Regression")
+    @Test(dependsOnMethods = "getMilestone", groups = "Smoke")
     public void deleteMilestone(){
         Assert.assertEquals(milestone.deleteApiMilestone(milestone.getMilestoneId()).getStatusCode(), HttpStatus.SC_OK);
     }
 
-    @BeforeClass(groups = "Smoke, Regression")
+    @BeforeClass
     public void createTestProject() {
         File path = new File("src/test/resources/restApiFiles/projectJson.json");
         project.addApiProject(path);
 
     }
 
-    @AfterClass(groups = "Smoke, Regression")
+    @AfterClass
     public void deleteTestProject() {
         project.deleteApiProject(project.getProjectId());
     }

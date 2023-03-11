@@ -12,18 +12,19 @@ public class ProjectTest extends BaseApiTest {
 
     private final ProjectStep project = new ProjectStep();
 
-    @Test (groups = "Smoke")
+    @Test(groups = "Smoke")
     public void addProject() {
         File file = new File("src/test/resources/restApiFiles/projectJson.json");
         Assert.assertEquals(project.addApiProject(file).getBody().jsonPath().get("name"), "Project name");
     }
-    @Test (groups = {"Regression", "Smoke"}, priority = 1)
-    public void getProject(){
+
+    @Test(groups = "Smoke", priority = 1)
+    public void getProject() {
         Assert.assertEquals(project.getApiProject(project.getProjectId())
                 .getBody().jsonPath().get("announcement"), "Project announcement");
     }
 
-    @Test (groups = "Smoke", priority = 2)
+    @Test(groups = "Smoke", priority = 2)
     public void deleteProject() {
         Assert.assertEquals(project.deleteApiProject(project.getProjectId()).statusCode(), HttpStatus.SC_OK);
     }

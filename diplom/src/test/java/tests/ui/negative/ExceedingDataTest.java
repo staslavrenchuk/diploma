@@ -8,7 +8,7 @@ import steps.ProjectStep;
 
 public class ExceedingDataTest extends BaseTest {
 
-    @Test(groups = "Smoke, Regression")
+    @Test(groups = "Regression")
 
     public void limitDataTest() {
 
@@ -23,6 +23,6 @@ public class ExceedingDataTest extends BaseTest {
                 .description("Description")
                 .build();
 
-        Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
+        Assert.assertFalse(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
     }
 }

@@ -9,7 +9,7 @@ import helpers.StaticProvider;
 public class LimitValuesTest extends BaseTest {
 
     @Test(dataProvider = "dataForLimitValues", dataProviderClass = StaticProvider.class, threadPoolSize = 2,
-            groups = "Smoke, Regression")
+            groups = "Regression")
 
     public void limitValuesTest(String a, String description) {
 

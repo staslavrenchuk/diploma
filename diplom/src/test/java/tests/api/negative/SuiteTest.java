@@ -16,32 +16,33 @@ public class SuiteTest extends BaseApiTest {
     private final SuitesStep suite = new SuitesStep();
 
 
-    @Test
-    public void addSuiteWithLongName(){
+    @Test(groups = "Regression")
+    public void addSuiteWithLongName() {
         File file = new File("src/test/resources/restApiFiles/NegativeSuiteJson.json");
         Assert.assertEquals(suite.addApiSuite(project.getProjectId(), file).getBody().jsonPath().getString("error"),
                 "Field :name is too long (250 characters at most).");
     }
 
-    @Test
-    public void getSuiteWithIncorrectId(){
+    @Test(groups = "Regression")
+    public void getSuiteWithIncorrectId() {
         Assert.assertEquals(suite.getApiSuite(0).getBody().jsonPath().getString("error"),
                 "Field :suite_id is not a valid test suite.");
     }
 
-    @Test
-    public void deleteSuiteWithIncorrectId(){
+    @Test(groups = "Regression")
+    public void deleteSuiteWithIncorrectId() {
         Assert.assertNotEquals(suite.deleteApiSuite(0).getStatusCode(), HttpStatus.SC_OK);
     }
 
     @BeforeClass
-    public void createTestProject(){
+    public void createTestProject() {
         File path = new File("src/test/resources/restApiFiles/projectJson.json");
         project.addApiProject(path);
 
     }
+
     @AfterClass
-    public void deleteTestProject(){
+    public void deleteTestProject() {
         project.deleteApiProject(project.getProjectId());
     }
 }

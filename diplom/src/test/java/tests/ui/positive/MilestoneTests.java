@@ -11,7 +11,7 @@ import steps.ProjectStep;
 public class MilestoneTests extends BaseTest {
 
 
-    @Test(groups = "Smoke, Regression")
+    @Test(groups = "Regression")
     public void dialogWindowTest() {
 
         ProjectStep projectStep = new ProjectStep(driver);
@@ -23,7 +23,7 @@ public class MilestoneTests extends BaseTest {
 
     }
 
-    @Test(groups = "Smoke, Regression")
+    @Test(groups = "Regression")
 
     public void uploadFileTest() throws InterruptedException {
 
@@ -40,7 +40,7 @@ public class MilestoneTests extends BaseTest {
 
         Assert.assertEquals(
                 driver.findElement(By
-                        .xpath("//*[@class='attachment-list-item attachment-block attachment-picture']"))
+                                .xpath("//*[@class='attachment-list-item attachment-block attachment-picture']"))
                         .getAttribute("title"),
                 nameOfFile + "\t(Click and hold to enter delete mode)");
     }

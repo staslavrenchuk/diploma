@@ -13,7 +13,7 @@ import steps.LoginStep;
 public class IncorrectDataTest {
     private WebDriver driver;
 
-    @Test(groups = "smoke")
+    @Test(groups = "Regression")
 
     public void incorrectDataTest() {
         LoginStep loginStep = new LoginStep(driver);
