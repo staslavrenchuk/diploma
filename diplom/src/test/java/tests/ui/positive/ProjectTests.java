@@ -27,7 +27,7 @@ public class ProjectTests extends BaseTest {
 
     }
     @Test(dependsOnMethods = "addNewProjectTest", groups = "Smoke")
-    public void deleteProject() throws InterruptedException {
+    public void deleteProject(){
 
         ProjectStep projectStep = new ProjectStep(driver);
         projectStep.addProjectOnDashboard();
