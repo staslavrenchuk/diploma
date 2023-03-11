@@ -4,15 +4,11 @@ import adapters.ProjectAdapter;
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
 import models.Project;
-import org.apache.http.HttpStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.*;
-import utils.Endpoints;
 
 import java.io.File;
-
-import static io.restassured.RestAssured.given;
 
 public class ProjectStep extends BaseStep {
 
@@ -107,9 +103,6 @@ public class ProjectStep extends BaseStep {
         moveToProjects();
         return new ProjectsPage(driver);
     }
-
-
-    //API
 
     public Response addApiProject(File file) {
         Response response = projectAdapter.add(file);

@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UIElement implements WebElement {
-    private WebDriver driver;
-    private By by;
-    private WebElement webElement;
-    private WaitsService waitsService;
+    private final WebDriver driver;
+    private final WebElement webElement;
+    private final WaitsService waitsService;
 
     public UIElement(WebDriver driver, By by) {
         this.driver = driver;
-        this.by = by;
         this.waitsService = new WaitsService(driver);
         this.webElement = waitsService.waitForExists(by);
     }
@@ -77,15 +75,6 @@ public class UIElement implements WebElement {
     @Override
     public List<WebElement> findElements(By by) {
         return webElement.findElements(by);
-    }
-
-    public List<UIElement> findUIElements(By by) {
-        ArrayList<UIElement> list = new ArrayList<>();
-        for (WebElement element : webElement.findElements(by)) {
-            list.add(new UIElement(driver, element));
-        }
-
-        return list;
     }
 
     @Override

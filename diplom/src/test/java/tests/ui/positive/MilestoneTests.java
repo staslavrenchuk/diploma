@@ -2,7 +2,6 @@ package tests.ui.positive;
 
 import baseEntities.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.MilestoneStep;
@@ -13,7 +12,7 @@ public class MilestoneTests extends BaseTest {
 
 
     @Test(groups = "Smoke, Regression")
-    public void dialogWindow() {
+    public void dialogWindowTest() {
 
         ProjectStep projectStep = new ProjectStep(driver);
         MilestoneStep milestoneStep = new MilestoneStep(driver);

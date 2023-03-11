@@ -1,7 +1,6 @@
 package helpers;
 
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.DataProvider;
 
 import java.util.Objects;
  public class CommonMethods {

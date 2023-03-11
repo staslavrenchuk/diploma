@@ -21,15 +21,12 @@ public class BrowserFactory {
 
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setHeadless(ReadProperties.isHeadless());
-                chromeOptions.addArguments("--disable-gpu");  // отключает графический процессор
-                //chromeOptions.addArguments("--window-size=1920,1200");
+                chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--silent");
                 chromeOptions.addArguments("--remote-allow-origins=*");
-                // chromeOptions.addArguments("--start-maximized");
-
+                chromeOptions.addArguments("--start-maximized");
                 driver = new ChromeDriver(chromeOptions);
-
                 break;
             case "firefox":
                 driverManagerType = DriverManagerType.FIREFOX;
@@ -47,9 +44,7 @@ public class BrowserFactory {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-//        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(30));
-
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         return driver;
     }
 }

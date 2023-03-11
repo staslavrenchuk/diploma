@@ -1,12 +1,10 @@
 package models;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Builder
-@Getter
-@Setter
+@Data
 public class Milestone {
     private String name;
     private String description;

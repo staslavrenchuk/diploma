@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RadioButton {
-    private List<UIElement> uiElementList;
-    private List<String> valueList;
-    private List<String> textList;
+    private final List<UIElement> uiElementList;
+    private final List<String> valueList;
+    private final List<String> textList;
 
 
     public RadioButton(WebDriver driver, String attributeNameValue) {

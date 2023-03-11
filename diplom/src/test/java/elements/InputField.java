@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class InputField {
-    private UIElement uiElement;
+    private final UIElement uiElement;
 
     public InputField(WebDriver driver, By by) {
         this.uiElement = new UIElement(driver, by);

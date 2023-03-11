@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class MilestonesPage extends BasePage {
 
     private final By milestonesPageTitleLocator = By.xpath("//*[@class=\"content-header-title page_title\"]");
+    private final By addMilestoneButtonLocator = By.xpath("//*[@class=\"button button-left button-add\"]");
     public MilestonesPage(WebDriver driver) {
         super(driver);
     }
@@ -16,7 +17,8 @@ public class MilestonesPage extends BasePage {
     protected By getPageIdentifier() {
         return milestonesPageTitleLocator;
     }
+
     public Button getAddMilestoneButton() {
-        return new Button(driver, By.xpath("//*[@class=\"button button-left button-add\"]"));
+        return new Button(driver, addMilestoneButtonLocator);
     }
 }

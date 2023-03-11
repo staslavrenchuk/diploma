@@ -10,10 +10,12 @@ public class DashboardPage extends BasePage {
 
     private final By dashboardLogoLocator = By.xpath("//div[contains(text(), 'All Projects')]");
     private final By refineLocator = By.id("chart-refine");
+    private final By addProjectButtonLocator = By.id("sidebar-projects-add");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
+
     public WebElement getRefineElement() {
         return driver.findElement(refineLocator);
     }
@@ -22,7 +24,8 @@ public class DashboardPage extends BasePage {
     protected By getPageIdentifier() {
         return dashboardLogoLocator;
     }
+
     public Button getAddProjectButton() {
-        return new Button(driver, By.id("sidebar-projects-add"));
+        return new Button(driver, addProjectButtonLocator);
     }
 }

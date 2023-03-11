@@ -1,15 +1,10 @@
 package models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Builder
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class Project {
 
     private int projectId;

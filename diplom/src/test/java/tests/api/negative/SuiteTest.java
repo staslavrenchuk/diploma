@@ -12,7 +12,7 @@ import steps.SuitesStep;
 import java.io.File;
 
 public class SuiteTest extends BaseApiTest {
-    private ProjectStep project = new ProjectStep();
+    private final ProjectStep project = new ProjectStep();
     private final SuitesStep suite = new SuitesStep();
 
 

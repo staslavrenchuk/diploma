@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 public class SuitesStep extends BaseStep {
     private int suiteId;
     private Response response;
-    private SuitesAdapter suitesAdapter;
+    private final SuitesAdapter suitesAdapter;
     public SuitesStep(){
         suitesAdapter = new SuitesAdapter();
     }

@@ -9,15 +9,19 @@ import org.openqa.selenium.WebElement;
 public class AddMilestonePage extends BasePage {
 
     private final By addMilestoneLogoLocator = By.xpath("//div[contains(text(), 'Add Milestone')]");
-    private final By addImage = By.xpath("//*[@class='icon-markdown-image']");
-    private final By uploadFile = By.xpath("//input[@type='file' and @class='dz-hidden-input'][3]");
+    private final By addImageLocator = By.xpath("//*[@class='icon-markdown-image']");
+    private final By uploadFileLocator = By.xpath("//input[@type='file' and @class='dz-hidden-input'][3]");
 
+    private final By attachButtonLocator = By.xpath("//button[@id='attachmentNewSubmit']");
+    private final By addTableDialogWindowButtonLocator = By.id("addTableSubmit");
+    private final By dialogWindowButtonLocator = By.xpath("//*[@class='icon-markdown-table']");
 
-    public WebElement getAddImage() {
-        return driver.findElement(addImage);
+    public WebElement getAddImageLocator() {
+        return driver.findElement(addImageLocator);
     }
-    public WebElement getUploadFile() {
-        return driver.findElement(uploadFile);
+
+    public WebElement getUploadFileLocator() {
+        return driver.findElement(uploadFileLocator);
     }
 
 
@@ -29,13 +33,16 @@ public class AddMilestonePage extends BasePage {
     protected By getPageIdentifier() {
         return addMilestoneLogoLocator;
     }
+
     public Button getAttachButton() {
-        return new Button(driver, By.xpath("//button[@id='attachmentNewSubmit']"));
+        return new Button(driver, attachButtonLocator);
     }
+
     public Button getAddTableDialogWindowButton() {
-        return new Button(driver, By.id("addTableSubmit"));
+        return new Button(driver, addTableDialogWindowButtonLocator);
     }
+
     public Button getDialogWindowButtonLocator() {
-        return new Button(driver, By.xpath("//*[@class='icon-markdown-table']"));
+        return new Button(driver, dialogWindowButtonLocator);
     }
 }
