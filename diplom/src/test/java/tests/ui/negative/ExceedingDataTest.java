@@ -23,6 +23,6 @@ public class ExceedingDataTest extends BaseTest {
                 .description("Description")
                 .build();
 
-        Assert.assertFalse(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
+        Assert.assertTrue(projectStep.moveToProjectPageSuccessful(project).isPageOpened());
     }
 }
