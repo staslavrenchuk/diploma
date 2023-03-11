@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.AddMilestonePage;
+import services.WaitsService;
 
 import java.io.File;
 
@@ -14,6 +15,7 @@ public class MilestoneStep extends BaseStep {
     private int milestoneId;
     private Response response;
     private MilestoneAdapter milestoneAdapter;
+    private WaitsService waitsService;
 
     public MilestoneStep(WebDriver driver) {
         super(driver);
@@ -27,8 +29,9 @@ public class MilestoneStep extends BaseStep {
     public void uploadFile(String pathToFile) throws InterruptedException {
         addMilestonePage.getAddImageLocator().click();
         addMilestonePage.getUploadFileLocator().sendKeys(pathToFile);
+
         for (int i = 0; i < 10000; i++) {
-            if (driver.findElement(By.id("libraryDeleteAttachment")).isDisplayed()) {
+            if (addMilestonePage.getDeleteButton().isDisplayed()) {
                 addMilestonePage.getAttachButton().click();
                 return;
             } else {

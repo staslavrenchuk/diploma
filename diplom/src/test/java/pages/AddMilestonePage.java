@@ -16,6 +16,8 @@ public class AddMilestonePage extends BasePage {
     private final By addTableDialogWindowButtonLocator = By.id("addTableSubmit");
     private final By dialogWindowButtonLocator = By.xpath("//*[@class='icon-markdown-table']");
 
+    private final By deleteButtonLocator = By.id("libraryDeleteAttachment");
+
     public WebElement getAddImageLocator() {
         return driver.findElement(addImageLocator);
     }
@@ -44,5 +46,8 @@ public class AddMilestonePage extends BasePage {
 
     public Button getDialogWindowButtonLocator() {
         return new Button(driver, dialogWindowButtonLocator);
+    }
+    public Button getDeleteButton(){
+        return new Button(driver, deleteButtonLocator);
     }
 }

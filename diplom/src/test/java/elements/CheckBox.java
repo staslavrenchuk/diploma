@@ -29,4 +29,7 @@ public class CheckBox {
     private void click() {
         uiElement.click();
     }
+
+
+
 }

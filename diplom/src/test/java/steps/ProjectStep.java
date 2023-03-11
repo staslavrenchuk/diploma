@@ -2,13 +2,18 @@ package steps;
 
 import adapters.ProjectAdapter;
 import baseEntities.BaseStep;
+import configuration.ReadProperties;
 import io.restassured.response.Response;
 import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.*;
+import services.WaitsService;
 
 import java.io.File;
+import java.time.Duration;
 
 public class ProjectStep extends BaseStep {
 
@@ -18,6 +23,7 @@ public class ProjectStep extends BaseStep {
     private ProjectPage projectPage;
     private MilestonesPage milestonesPage;
     private ProjectAdapter projectAdapter;
+    private WebDriverWait wait;
 
     private int projectId;
 
@@ -29,6 +35,7 @@ public class ProjectStep extends BaseStep {
         projectsPage = new ProjectsPage(driver);
         projectPage = new ProjectPage(driver);
         milestonesPage = new MilestonesPage(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(ReadProperties.timeout()));
     }
     public ProjectStep(){
         projectAdapter = new ProjectAdapter();
@@ -58,11 +65,8 @@ public class ProjectStep extends BaseStep {
         driver.findElement(By
                 .xpath("//a[text()='"+projectName+"']/parent::td/following-sibling::td[2]/child::a/child::div"))
                 .click();
-        Thread.sleep(2000);
         projectsPage.getDeleteProjectButton().setFlag();
-        Thread.sleep(3000);
         projectsPage.getOkButton().click();
-
         logger.trace("A project - " + projectName + " is deleted");
     }
 
