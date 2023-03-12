@@ -3,10 +3,8 @@ package steps;
 import adapters.MilestoneAdapter;
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.AddMilestonePage;
-import services.WaitsService;
 
 import java.io.File;
 
@@ -15,7 +13,6 @@ public class MilestoneStep extends BaseStep {
     private int milestoneId;
     private Response response;
     private MilestoneAdapter milestoneAdapter;
-    private WaitsService waitsService;
 
     public MilestoneStep(WebDriver driver) {
         super(driver);
@@ -63,10 +60,6 @@ public class MilestoneStep extends BaseStep {
 
     public Response getApiMilestone(int milestoneId) {
         return milestoneAdapter.get(milestoneId);
-    }
-
-    public Response updateApiMilestone(int milestoneId, File file) {
-        return milestoneAdapter.update(milestoneId, file);
     }
 
     public Response deleteApiMilestone(int projectId) {
