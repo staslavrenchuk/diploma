@@ -107,10 +107,6 @@ public class ProjectStep extends BaseStep {
         return projectAdapter.get(projectId);
     }
 
-    public Response updateApiProject(int projectId, File file) {
-        return projectAdapter.update(projectId, file);
-    }
-
     public Response deleteApiProject(int projectId) {
         return projectAdapter.delete(projectId);
     }
