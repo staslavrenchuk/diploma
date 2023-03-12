@@ -3,11 +3,9 @@ package steps;
 import adapters.SuitesAdapter;
 import baseEntities.BaseStep;
 import io.restassured.response.Response;
-import utils.Endpoints;
 
 import java.io.File;
 
-import static io.restassured.RestAssured.given;
 
 public class SuitesStep extends BaseStep {
 
