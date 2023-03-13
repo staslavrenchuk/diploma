@@ -4,6 +4,7 @@ import baseEntities.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.AddMilestonePage;
 import steps.MilestoneStep;
 import steps.ProjectStep;
 
@@ -29,6 +30,7 @@ public class MilestoneTests extends BaseTest {
 
         ProjectStep projectStep = new ProjectStep(driver);
         MilestoneStep milestoneStep = new MilestoneStep(driver);
+        AddMilestonePage addMilestonePage = new AddMilestonePage(driver);
 
         projectStep.selectProject("Test");
 
@@ -39,8 +41,7 @@ public class MilestoneTests extends BaseTest {
         milestoneStep.uploadFileSuccessful(pathToFile);
 
         Assert.assertEquals(
-                driver.findElement(By
-                                .xpath("//*[@class='attachment-list-item attachment-block attachment-picture']"))
+                addMilestonePage.uploadedFile()
                         .getAttribute("title"),
                 nameOfFile + "\t(Click and hold to enter delete mode)");
     }
