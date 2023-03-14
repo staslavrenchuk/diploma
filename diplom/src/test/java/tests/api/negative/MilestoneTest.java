@@ -19,7 +19,8 @@ public class MilestoneTest extends BaseApiTest {
     @Test( groups = "Regression")
     public void addMilestoneWithLongName() {
         File file = new File("src/test/resources/restApiFiles/negativeMilestoneJson.json");
-        Assert.assertEquals(milestone.addApiMilestone(project.getProjectId(), file).getBody().jsonPath().getString("error"),
+        Assert.assertEquals(milestone.addApiMilestone(project.getProjectId(), file)
+                        .getBody().jsonPath().getString("error"),
                 "Field :name is too long (250 characters at most).");
 
     }

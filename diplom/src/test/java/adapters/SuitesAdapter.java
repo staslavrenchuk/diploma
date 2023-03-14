@@ -30,17 +30,6 @@ public class SuitesAdapter {
                 .extract().response();
     }
 
-    public Response update(int suiteId, File file) {
-        return given()
-                .pathParams("suite_id", suiteId)
-                .body(file)
-                .when()
-                .post(Endpoints.UPDATE_SUITE)
-                .then()
-                .log().body()
-                .extract().response();
-    }
-
     public Response delete(int suiteId) {
         return given()
                 .pathParams("suite_id", suiteId)
@@ -50,5 +39,4 @@ public class SuitesAdapter {
                 .log().body()
                 .extract().response();
     }
-
 }

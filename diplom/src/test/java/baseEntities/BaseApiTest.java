@@ -25,6 +25,4 @@ public class BaseApiTest {
     public void tearDown(){
 
     }
-
-
 }

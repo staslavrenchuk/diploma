@@ -12,7 +12,6 @@ public class ProjectTests extends BaseTest {
     private Project project;
 
     @Test(description = "project is adding in this test", groups = "Smoke")
-
     public void addNewProjectTest()  {
 
         ProjectStep projectStep = new ProjectStep(driver);

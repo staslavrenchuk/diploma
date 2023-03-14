@@ -9,13 +9,12 @@ import pages.DashboardPage;
 import helpers.CommonMethods;
 
 public class ToolTipTest extends BaseTest {
-    private final Logger logger= LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger();
 
-    @Test (groups = "Regression")
-
+    @Test(groups = "Regression")
     public void tooltipTest() {
 
-        DashboardPage page  = new DashboardPage(driver);
+        DashboardPage page = new DashboardPage(driver);
         Assert.assertTrue(CommonMethods.checkTooltip(page.getRefineElement(), "Refine"));
 
         logger.trace("Tooltip is checked");

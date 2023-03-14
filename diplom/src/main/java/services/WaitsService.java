@@ -24,6 +24,4 @@ public class WaitsService {
     public WebElement waitForExists(By locator) {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
-
-
 }
