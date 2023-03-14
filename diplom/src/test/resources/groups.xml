@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Main Suite"  parallel="classes" thread-count="2">
+    <test name="Group1" >
+       <groups>
+           <define name="Group 1">
+               <include name="Smoke"/>
+           </define>
+           <define name="Group 2">
+               <include name="Regression"/>
+           </define>
+           <define name="Group 3">
+               <include name="Regression"/>
+               <include name="Smoke"/>
+           </define>
+           <run>
+               <include name="Group 3"/>
+           </run>
+       </groups>
+        <classes>
+            <class name="tests.api.positive.ProjectTest"/>
+            <class name="tests.api.positive.MilestoneTest"/>
+            <class name="tests.api.negative.MilestoneTest"/>
+            <class name="tests.api.negative.SuiteTest"/>
+            <class name="tests.ui.negative.ExceedingDataTest"/>
+            <class name="tests.ui.negative.IncorrectDataTest"/>
+            <class name="tests.ui.positive.LimitValuesTest"/>
+            <class name="tests.ui.positive.MilestoneTests"/>
+            <class name="tests.ui.positive.ProjectTests"/>
+            <class name="tests.ui.positive.ToolTipTest"/>
+        </classes>
+    </test>
+</suite>
