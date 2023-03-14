@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Main Suite">
-    <test name="Groups Test" >
+<suite name="Main Suite"  parallel="classes" thread-count="2">
+    <test name="Group1" >
        <groups>
            <define name="Group 1">
                <include name="Smoke"/>
@@ -28,7 +28,6 @@
             <class name="tests.ui.positive.MilestoneTests"/>
             <class name="tests.ui.positive.ProjectTests"/>
             <class name="tests.ui.positive.ToolTipTest"/>
-
         </classes>
     </test>
 </suite>

@@ -2,9 +2,11 @@ package steps;
 
 import adapters.MilestoneAdapter;
 import baseEntities.BaseStep;
+import elements.Button;
 import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
 import pages.AddMilestonePage;
+import services.WaitsService;
 
 import java.io.File;
 
@@ -23,19 +25,14 @@ public class MilestoneStep extends BaseStep {
         milestoneAdapter = new MilestoneAdapter();
     }
 
-    public void uploadFile(String pathToFile) throws InterruptedException {
+    public void uploadFile(String pathToFile) {
         addMilestonePage.getAddImageLocator().click();
         addMilestonePage.getUploadFileLocator().sendKeys(pathToFile);
+        WaitsService waitsService = new WaitsService(driver);
 
-        for (int i = 0; i < 10000; i++) {
-            if (addMilestonePage.getDeleteButton().isDisplayed()) {
-                addMilestonePage.getAttachButton().click();
-                return;
-            } else {
-                Thread.sleep(500);
-                i++;
-            }
-        }
+        waitsService.waitForElementVisible(addMilestonePage.getDeleteButton());
+        addMilestonePage.getAttachButton().click();
+
     }
 
     public void dialogWindows() {
@@ -43,7 +40,7 @@ public class MilestoneStep extends BaseStep {
         addMilestonePage.getAddTableDialogWindowButton().click();
     }
 
-    public AddMilestonePage uploadFileSuccessful(String pathToFile) throws InterruptedException {
+    public AddMilestonePage uploadFileSuccessful(String pathToFile) {
         uploadFile(pathToFile);
         return new AddMilestonePage(driver);
     }

@@ -1,7 +1,6 @@
 package tests.ui.positive;
 
 import baseEntities.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AddMilestonePage;
@@ -19,14 +18,13 @@ public class MilestoneTests extends BaseTest {
         MilestoneStep milestoneStep = new MilestoneStep(driver);
         projectStep.selectProject("Test");
 
-
         Assert.assertTrue(milestoneStep.checkDialogWindow().isPageOpened());
 
     }
 
     @Test(groups = "Regression")
 
-    public void uploadFileTest() throws InterruptedException {
+    public void uploadFileTest() {
 
         ProjectStep projectStep = new ProjectStep(driver);
         MilestoneStep milestoneStep = new MilestoneStep(driver);

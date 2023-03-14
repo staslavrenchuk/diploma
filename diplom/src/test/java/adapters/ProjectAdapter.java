@@ -34,17 +34,6 @@ public class ProjectAdapter {
                 .extract().response();
     }
 
-    public Response update(int projectId, File file) {
-        return given()
-                .pathParams("project_id", projectId)
-                .body(file)
-                .when()
-                .post(Endpoints.UPDATE_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().response();
-    }
 
     public Response delete(int projectId) {
         return given()
@@ -56,6 +45,4 @@ public class ProjectAdapter {
                 .statusCode(HttpStatus.SC_OK)
                 .extract().response();
     }
-
-
 }

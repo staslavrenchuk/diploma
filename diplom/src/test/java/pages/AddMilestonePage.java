@@ -12,9 +12,9 @@ public class AddMilestonePage extends BasePage {
     private final By addImageLocator = By.xpath("//*[@class='icon-markdown-image']");
     private final By uploadFileLocator = By.xpath("//input[@type='file' and @class='dz-hidden-input'][3]");
 
-    private final By attachButtonLocator = By.xpath("//button[@id='attachmentNewSubmit']");
+    private final By attachButtonLocator = By.id("attachmentNewSubmit");
     private final By addTableDialogWindowButtonLocator = By.id("addTableSubmit");
-    private final By dialogWindowButtonLocator = By.xpath("//*[@class='icon-markdown-table']");
+    private final By dialogWindowButtonLocator = By.cssSelector(".icon-markdown-table");
 
     private final By deleteButtonLocator = By.id("libraryDeleteAttachment");
     private final By uploadedFileLocator = By.xpath("//*[@class='attachment-list-item attachment-block attachment-picture']");
@@ -25,6 +25,9 @@ public class AddMilestonePage extends BasePage {
 
     public WebElement getUploadFileLocator() {
         return driver.findElement(uploadFileLocator);
+    }
+    public WebElement getDeleteButton() {
+        return driver.findElement(deleteButtonLocator);
     }
 
 
@@ -47,9 +50,6 @@ public class AddMilestonePage extends BasePage {
 
     public Button getDialogWindowButtonLocator() {
         return new Button(driver, dialogWindowButtonLocator);
-    }
-    public Button getDeleteButton(){
-        return new Button(driver, deleteButtonLocator);
     }
     public WebElement uploadedFile(){
         return driver.findElement(uploadedFileLocator);

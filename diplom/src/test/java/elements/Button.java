@@ -21,11 +21,4 @@ public class Button {
         wait.until(ExpectedConditions.elementToBeClickable(uiElement));
         uiElement.click();
     }
-
-    public boolean isDisplayed(){
-        return uiElement.isDisplayed();
-    }
-
-
-
 }
